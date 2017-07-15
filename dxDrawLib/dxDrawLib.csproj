@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\Client" />
+    <Folder Include="src\dist" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\Server\DxDrawLib.cs" />
@@ -48,10 +49,6 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
       <HintPath>..\..\Gameserver\Newtonsoft.Json.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\dist\new.txt" />
-    <Content Include="src\dist\test.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

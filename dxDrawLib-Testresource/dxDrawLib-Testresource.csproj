@@ -39,9 +39,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\Main.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="GrandTheftMultiplayer.Server, Version=0.1.513.599, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\Gameserver\GrandTheftMultiplayer.Server.exe</HintPath>
     </Reference>
@@ -51,6 +48,13 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
       <HintPath>..\..\Gameserver\Newtonsoft.Json.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\Client" />
+    <Folder Include="src\dist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src\Server\Main.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
