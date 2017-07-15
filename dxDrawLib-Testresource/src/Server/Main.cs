@@ -1,4 +1,5 @@
-﻿using GrandTheftMultiplayer.Server.API;
+﻿using dxDrawLib.Server;
+using GrandTheftMultiplayer.Server.API;
 
 namespace dxDrawLibResource.Server
 {
@@ -7,7 +8,7 @@ namespace dxDrawLibResource.Server
 
         public Main()
         {
-            
+            DxDrawLib.Setup(API);
         }
         
     }
