@@ -50,8 +50,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src/Client/**" />
-    <Content Include="resourcefiles/**" />
+    <Content Include="src\Client\**\*" />
+    <Content Include="resourcefiles\**" />
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
@@ -70,12 +70,12 @@
   -->
   <Target Name="AfterBuild">
     <ItemGroup>
-      <ResurceFiles Include="resourcefiles/**/*" />
+      <ResurceFiles Include="resourcefiles\**\*" />
     </ItemGroup>
     <Copy SourceFiles="@(ResurceFiles)" DestinationFolder="..\..\Gameserver\resources\dxdrawlib" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="../dxDrawLib/dist/dxdrawlib.js" DestinationFolder="..\..\Gameserver\resources\dxdrawlib" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="dist/dxdrawlibresource.js" DestinationFolder="..\..\Gameserver\resources\dxdrawlib" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="bin/$(Configuration)/dxDrawLibResource.dll" DestinationFolder="..\..\Gameserver\resources\dxdrawlib" />
-    <Copy SourceFiles="bin/$(Configuration)/dxDrawLib.dll" DestinationFolder="..\..\Gameserver" />
+    <Copy SourceFiles="..\dxDrawLib\dist\dxdrawlib.js" DestinationFolder="..\..\Gameserver\resources\dxdrawlib" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="dist\dxdrawlibresource.js" DestinationFolder="..\..\Gameserver\resources\dxdrawlib" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="bin\$(Configuration)\dxDrawLibResource.dll" DestinationFolder="..\..\Gameserver\resources\dxdrawlib" />
+    <Copy SourceFiles="bin\$(Configuration)\dxDrawLib.dll" DestinationFolder="..\..\Gameserver" />
   </Target>
 </Project>
