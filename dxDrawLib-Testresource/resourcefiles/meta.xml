@@ -1,7 +1,8 @@
 <meta>
-    <info name="Door Manager" description="Helper resource to control the game's doors." author="Guadmaz" version="1.0" shadowcopy="true" />
+    <info name="DxDrawLib - Testresource" description="This resource exists to test the dxdrawlib" author="SyBozz,Micky5991" version="1.0" shadowcopy="true" />
 
     <script src="dxDrawLibResource.dll" type="server" lang="compiled" />
+    <script src="dxdrawlib.js" type="client" lang="javascript" />
 
     <assembly ref="dxDrawLib.dll" />
     <assembly ref="Newtonsoft.Json.dll" />

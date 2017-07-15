@@ -69,7 +69,8 @@
       <ResurceFiles Include="resourcefiles/**/*" />
     </ItemGroup>
     <Copy SourceFiles="@(ResurceFiles)" DestinationFolder="..\..\Gameserver\resources\dxdrawlib" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="bin/$(Configuration)/dxDrawLib.dll" DestinationFolder="..\..\Gameserver" />
+    <Copy SourceFiles="../dxDrawLib/dist/dxdrawlib.js" DestinationFolder="..\..\Gameserver\resources\dxdrawlib" SkipUnchangedFiles="true"/>
     <Copy SourceFiles="bin/$(Configuration)/dxDrawLibResource.dll" DestinationFolder="..\..\Gameserver\resources\dxdrawlib" />
+    <Copy SourceFiles="bin/$(Configuration)/dxDrawLib.dll" DestinationFolder="..\..\Gameserver" />
   </Target>
 </Project>
