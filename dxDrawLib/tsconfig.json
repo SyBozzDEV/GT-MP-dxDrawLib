@@ -9,5 +9,8 @@
     "module": "commonjs",
     "outFile": "dist/dxdrawlib.js"
   },
+  "include": [
+    "src/Client/**/*"
+  ],
   "compileOnSave": true
 }

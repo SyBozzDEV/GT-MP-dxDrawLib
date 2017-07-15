@@ -54,6 +54,9 @@
     <Folder Include="src\dist" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="src/Client/**" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="src\Server\Main.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
