@@ -3,6 +3,7 @@
 
     <script src="dxDrawLibResource.dll" type="server" lang="compiled" />
     <script src="dxdrawlib.js" type="client" lang="javascript" />
+    <script src="dxdrawlibresource.js" type="client" lang="javascript" />
 
     <assembly ref="dxDrawLib.dll" />
     <assembly ref="Newtonsoft.Json.dll" />
