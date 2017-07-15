@@ -33,7 +33,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src" />
+    <ProjectReference Include="..\dxDrawLib\dxDrawLib.csproj">
+      <Project>{a18c6251-e1c0-45b1-a5ef-254f574e55ed}</Project>
+      <Name>dxDrawLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src\Main.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="GrandTheftMultiplayer.Server, Version=0.1.513.599, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\Gameserver\GrandTheftMultiplayer.Server.exe</HintPath>
+    </Reference>
+    <Reference Include="GrandTheftMultiplayer.Shared, Version=0.1.489.410, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\Gameserver\GrandTheftMultiplayer.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\..\Gameserver\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
