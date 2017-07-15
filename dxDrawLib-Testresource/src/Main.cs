@@ -1,6 +1,6 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 
-namespace dxDrawLib_Testresource
+namespace dxDrawLibResource
 {
     public class Main : Script
     {
