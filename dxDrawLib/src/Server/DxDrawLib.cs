@@ -10,8 +10,10 @@ namespace dxDrawLib.Server
         public static void Setup(API api)
         {
             DxDrawLib.API = api;
+            API.consoleOutput("[DxDrawLib] Setting up...");
             
             
+            API.consoleOutput("[DxDrawLib] Successfully set up!");
         }
         
     }

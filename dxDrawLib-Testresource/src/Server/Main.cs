@@ -8,7 +8,10 @@ namespace dxDrawLibResource.Server
 
         public Main()
         {
+            API.consoleOutput("[DxDrawLib-Resource] Starting testresource...");
             DxDrawLib.Setup(API);
+            
+            API.consoleOutput("[DxDrawLib-Resource] Testresource started!");
         }
         
     }

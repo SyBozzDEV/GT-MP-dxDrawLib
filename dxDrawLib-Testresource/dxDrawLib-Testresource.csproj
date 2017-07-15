@@ -64,4 +64,12 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <ResurceFiles Include="resourcefiles/**/*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ResurceFiles)" DestinationFolder="..\..\Gameserver\resources\dxdrawlib" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="bin/$(Configuration)/dxDrawLib.dll" DestinationFolder="..\..\Gameserver" />
+    <Copy SourceFiles="bin/$(Configuration)/dxDrawLibResource.dll" DestinationFolder="..\..\Gameserver\resources\dxdrawlib" />
+  </Target>
 </Project>

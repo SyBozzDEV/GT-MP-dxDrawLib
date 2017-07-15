@@ -1,0 +1,11 @@
+<meta>
+    <info name="Door Manager" description="Helper resource to control the game's doors." author="Guadmaz" version="1.0" shadowcopy="true" />
+
+    <script src="dxDrawLibResource.dll" type="server" lang="compiled" />
+
+    <assembly ref="dxDrawLib.dll" />
+    <assembly ref="Newtonsoft.Json.dll" />
+
+    <settings>
+    </settings>
+</meta>
