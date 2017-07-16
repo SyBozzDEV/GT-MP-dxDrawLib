@@ -32,7 +32,7 @@ class DxWindow extends DxElement {
 			if (API.isCursorShown()) {
 				var mPos = API.getCursorPositionMaintainRatio();
 				if (API.isDisabledControlJustPressed(24)) {
-					if (this.closeButton && mPos.X > ((this.X + this.width) - 20) && mPos.X < (this.X + this.width) && mPos.Y > (this.Y) && mPos.Y < (this.Y + 20)) {
+					if (this.closeButton && mPos.X > ((this.X + this.width) - 20) && mPos.X < (this.X + this.width) && mPos.Y > (this.Y) && mPos.Y < (this.Y + 25)) {
 						this._closeButtonClicked = true;
 					}
 					if (mPos.X > this.X && mPos.X < ((this.X + this.width) - 20) && mPos.Y > this.Y && mPos.Y < (this.Y + 25) && !this._headerClicked) {
@@ -42,7 +42,7 @@ class DxWindow extends DxElement {
 					}
 				}
 				if (API.isControlJustReleased(24)) {
-					if (this.closeButton && this._closeButtonClicked && mPos.X > ((this.X + this.width) - 20) && mPos.X < (this.X + this.width) && mPos.Y > (this.Y) && mPos.Y < (this.Y + 20)) {
+					if (this.closeButton && this._closeButtonClicked && mPos.X > ((this.X + this.width) - 20) && mPos.X < (this.X + this.width) && mPos.Y > (this.Y) && mPos.Y < (this.Y + 25)) {
 						API.sendChatMessage("Close Button clicked");
 					}
 					this._closeButtonClicked = false;
