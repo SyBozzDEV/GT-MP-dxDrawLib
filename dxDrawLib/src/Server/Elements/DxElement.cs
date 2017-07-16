@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Drawing;
+using Newtonsoft.Json;
 
 namespace dxDrawLib.Server.Elements
 {
@@ -9,22 +10,74 @@ namespace dxDrawLib.Server.Elements
         
         protected float x;
         protected float y;
+        protected float width;
+        protected float height;
 
-        protected DxElement(float x, float y)
+        protected bool relative;
+
+        protected Color color;
+
+        private bool _visible;
+
+        public bool Visible
         {
-            this.id = lastInt++;
-            this.x = x;
-            this.y = y;
+            set
+            {
+                _visible = value;
+                this.Sync();
+            }
+            get { return _visible; }
         }
 
-        public void Show()
+        protected DxElement(float x, float y, float width, float height)
         {
-            DxDrawLib.API.sendChatMessageToAll(this.GetSyncString());
+            this.id         = lastInt++;
+            this.x          = x;
+            this.y          = y;
+            this.width      = width;
+            this.height     = height;
+            
+            this.relative   = true;
+            this.color = Color.FromArgb(200, 0, 0, 0);
+        }
+        
+        protected DxElement(float x, float y, float width, float height, bool relative)
+        {
+            this.id         = lastInt++;
+            this.x          = x;
+            this.y          = y;
+            this.width      = width;
+            this.height     = height;
+            this.relative   = relative;
+
+            this.color = Color.FromArgb(200, 0, 0, 0);
+        }
+        
+        protected DxElement(float x, float y, float width, float height, bool relative, Color color)
+        {
+            this.id         = lastInt++;
+            this.x          = x;
+            this.y          = y;
+            this.width      = width;
+            this.height     = height;
+            this.relative   = relative;
+
+            this.color = color;
         }
 
-        public void Hide()
+        private void Sync()
+        {
+            DxDrawLib.API.consoleOutput(this.GetSyncString());
+        }
+
+        private void Unsync()
         {
             
+        }
+
+        public void Delete()
+        {
+            Unsync();
         }
 
         private string GetSyncString()

@@ -19,8 +19,8 @@ namespace dxDrawLibResource.Server
 
         public void SetUpTestwindow()
         {
-            DxWindow window = new DxWindow(0, 0);
-            window.Show();
+            DxWindow window = new DxWindow(0, 0, 0, 0);
+            window.Visible = true;
         }
         
     }
