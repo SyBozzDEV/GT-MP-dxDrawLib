@@ -5,7 +5,7 @@ namespace dxDrawLib.Server.Elements
 {
     public abstract class DxElement
     {
-        private static int lastInt;
+        internal static int lastInt;
         public readonly int id;
         
         public float x;
