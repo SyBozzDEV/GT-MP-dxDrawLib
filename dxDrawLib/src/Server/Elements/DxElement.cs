@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
+using dxDrawLib.Server.Helpers;
 using GrandTheftMultiplayer.Server.Elements;
 using Newtonsoft.Json;
 
@@ -25,6 +25,7 @@ namespace dxDrawLib.Server.Elements
 
         private bool _visible;
 
+        [JsonIgnore]
         public bool Visible
         {
             set
@@ -36,7 +37,7 @@ namespace dxDrawLib.Server.Elements
         }
 
         protected DxElement(float x, float y, float width, float height, bool relative = true)
-            : this(x, y, width, height, relative, Color.FromArgb(200, 0, 0, 0)) {}
+            : this(x, y, width, height, relative, new Color(200, 0, 0, 0)) {}
         
         protected DxElement(float x, float y, float width, float height, bool relative, Color color)
         {

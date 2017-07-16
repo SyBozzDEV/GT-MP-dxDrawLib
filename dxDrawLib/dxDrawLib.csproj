@@ -43,6 +43,8 @@
     <Compile Include="src\Server\Elements\DxElement.cs" />
     <Compile Include="src\Server\Elements\DxWindow.cs" />
     <Compile Include="src\Server\Elements\ElementEventHandler.cs" />
+    <Compile Include="src\Server\Helpers\Color.cs" />
+    <Compile Include="src\Server\Helpers\Helpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GrandTheftMultiplayer.Server, Version=0.1.513.599, Culture=neutral, PublicKeyToken=null">
