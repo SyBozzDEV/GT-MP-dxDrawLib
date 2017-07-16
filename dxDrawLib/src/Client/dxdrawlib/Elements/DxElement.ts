@@ -28,16 +28,15 @@ abstract class DxElement {
 		if (this.color == null) this.color = new Color();
 	}
 
-	private static calculateSize(value: number, type: number, bool: boolean): number
-	{
+	private static calculateSize(value: number, type: number, relative: boolean): number {
 		var result: number;
 
 		switch (type) {
 			case 1: // For X and width
-				result = (bool) ? clamp(DxScreen.width * value, 0, DxScreen.width) : clamp(value, 0, DxScreen.width);
+				result = (relative) ? clamp(DxScreen.width * value, 0, DxScreen.width) : clamp(value, 0, DxScreen.width);
 				break;
 			case 2: // For Y and height
-				result = (bool) ? clamp(DxScreen.height * value, 0, DxScreen.height) : clamp(value, 0, DxScreen.height);
+				result = (relative) ? clamp(DxScreen.height * value, 0, DxScreen.height) : clamp(value, 0, DxScreen.height);
 				break;
 		}
 
