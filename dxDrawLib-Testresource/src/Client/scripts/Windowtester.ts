@@ -10,6 +10,7 @@ API.onKeyDown.connect(
 	function (sender, e) {
 		if (e.KeyCode == Keys.F9) {
 			testWindow.closeButton = true;
+			testWindow.moveable = true;
 			testWindow.visible = !testWindow.visible;
 			API.showCursor(testWindow.visible);
 		}
