@@ -1,6 +1,7 @@
 /// <reference path="types-gt-mp/index.d.ts" />
 
 // Helpers
+/// <reference path="dxdrawlib/Helpers/Clamp.ts" />
 /// <reference path="dxdrawlib/Helpers/Color.ts" />
 /// <reference path="dxdrawlib/Helpers/DxScreen.ts" />
 

@@ -2,23 +2,46 @@
 
 abstract class DxElement {
 
-	public visible: boolean = true;
+	private _X: number;
+	private _Y: number;
+	private _width: number;
+	private _height: number;
 
-	constructor(public X: number, public Y: number, public width: number, public height: number, public relative: boolean = true, public color?: Color) {
+	public visible: boolean = false;
 
-		if (this.relative) {
-			this.X = DxScreen.width * this.X;
-			this.Y = DxScreen.height * this.Y;
-			this.width = DxScreen.width * this.width;
-			this.height = DxScreen.height * this.height;
-		}
+	set X(value: number) { this._X = DxElement.calculateSize(value, 1, this.relative); }
+	get X(): number { return this._X; }
+	set Y(value: number) { this._Y = DxElement.calculateSize(value, 2, this.relative); }
+	get Y(): number { return this._Y; }
+	set width(value: number) { this._width = DxElement.calculateSize(value, 2, this.relative); }
+	get width(): number { return this._width; }
+	set height(value: number) { this._height = DxElement.calculateSize(value, 2, this.relative); }
+	get height(): number { return this._height; }
 
-		this.X = (this.X > DxScreen.width) ? DxScreen.width : ((this.X < 0) ? 0 : this.X);
-		this.Y = (this.Y > DxScreen.height) ? DxScreen.height : ((this.Y < 0) ? 0 : this.Y);
-		this.width = (this.width > DxScreen.width) ? DxScreen.width : ((this.width < 0) ? 0 : this.width);
-		this.height = (this.height > DxScreen.height) ? DxScreen.height : ((this.height < 0) ? 0 : this.height);
+	constructor(X: number, Y: number, width: number, height: number, public relative: boolean = true, public color?: Color) {
+
+		this.X = X;
+		this.Y = Y;
+		this.width = width;
+		this.height = height;
 
 		if (this.color == null) this.color = new Color();
+	}
+
+	private static calculateSize(value: number, type: number, bool: boolean): number
+	{
+		var result: number;
+
+		switch (type) {
+			case 1: // For X and width
+				result = (bool) ? clamp(DxScreen.width * value, 0, DxScreen.width) : clamp(value, 0, DxScreen.width);
+				break;
+			case 2: // For Y and height
+				result = (bool) ? clamp(DxScreen.height * value, 0, DxScreen.height) : clamp(value, 0, DxScreen.height);
+				break;
+		}
+
+		return result;
 	}
 
 	public abstract draw(): void;

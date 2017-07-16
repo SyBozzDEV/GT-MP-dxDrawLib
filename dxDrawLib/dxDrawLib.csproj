@@ -32,7 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <TypeScriptCompile Include="src\Client\dxdrawlib\helpers\Clamp.ts" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="src\Server\DxDrawLib.cs" />
   </ItemGroup>
