@@ -6,8 +6,8 @@ abstract class DxElement {
 
 	protected _id: number;
 
-	private _X: number;
-	private _Y: number;
+	protected _X: number;
+	protected _Y: number;
 	private _width: number;
 	private _height: number;
 
