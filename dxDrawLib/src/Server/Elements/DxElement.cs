@@ -6,16 +6,16 @@ namespace dxDrawLib.Server.Elements
     public abstract class DxElement
     {
         private static int lastInt;
-        protected readonly int id;
+        public readonly int id;
         
-        protected float x;
-        protected float y;
-        protected float width;
-        protected float height;
+        public float x;
+        public float y;
+        public float width;
+        public float height;
 
-        protected bool relative;
+        public bool relative;
 
-        protected Color color;
+        public Color color;
 
         private bool _visible;
 
