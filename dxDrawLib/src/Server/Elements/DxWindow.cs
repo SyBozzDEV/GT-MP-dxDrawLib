@@ -6,12 +6,7 @@ namespace dxDrawLib.Server.Elements
     {
         private string _title;
         
-        public DxWindow(string title, float x, float y, float width, float height) : base(x, y, width, height)
-        {
-            this._title = title;
-        }
-
-        public DxWindow(string title, float x, float y, float width, float height, bool relative) : base(x, y, width, height, relative)
+        public DxWindow(string title, float x, float y, float width, float height, bool relative=true) : base(x, y, width, height, relative)
         {
             this._title = title;
         }

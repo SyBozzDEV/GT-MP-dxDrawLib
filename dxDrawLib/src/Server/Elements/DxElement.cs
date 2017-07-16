@@ -29,29 +29,8 @@ namespace dxDrawLib.Server.Elements
             get { return _visible; }
         }
 
-        protected DxElement(float x, float y, float width, float height)
-        {
-            this.id         = lastInt++;
-            this.x          = x;
-            this.y          = y;
-            this.width      = width;
-            this.height     = height;
-            
-            this.relative   = true;
-            this.color = Color.FromArgb(200, 0, 0, 0);
-        }
-        
-        protected DxElement(float x, float y, float width, float height, bool relative)
-        {
-            this.id         = lastInt++;
-            this.x          = x;
-            this.y          = y;
-            this.width      = width;
-            this.height     = height;
-            this.relative   = relative;
-
-            this.color = Color.FromArgb(200, 0, 0, 0);
-        }
+        protected DxElement(float x, float y, float width, float height, bool relative = true)
+            : this(x, y, width, height, relative, Color.FromArgb(20, 0, 0, 0)) {}
         
         protected DxElement(float x, float y, float width, float height, bool relative, Color color)
         {
