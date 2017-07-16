@@ -2,3 +2,4 @@
 
 // ELEMENTS
 /// <reference path="dxdrawlib/Elements/DxWindow.ts" />
+/// <reference path="dxdrawlib/Elements/DxElement.ts" />
