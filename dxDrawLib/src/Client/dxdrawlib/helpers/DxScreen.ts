@@ -1,13 +1,6 @@
 ﻿/// <reference path="../../dxdrawlib.d.ts" />
 
 class DxScreen {
-	static width: number;
-	static height: number;
+	static width: number = API.getScreenResolution().Width;
+	static height: number = API.getScreenResolution().Height;
 }
-
-API.onResourceStart.connect(
-	function () {
-		DxScreen.width = API.getScreenResolution().Width;
-		DxScreen.height = API.getScreenResolution().Height;
-	}
-);
