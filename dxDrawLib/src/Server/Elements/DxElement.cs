@@ -30,7 +30,7 @@ namespace dxDrawLib.Server.Elements
         }
 
         protected DxElement(float x, float y, float width, float height, bool relative = true)
-            : this(x, y, width, height, relative, Color.FromArgb(20, 0, 0, 0)) {}
+            : this(x, y, width, height, relative, Color.FromArgb(200, 0, 0, 0)) {}
         
         protected DxElement(float x, float y, float width, float height, bool relative, Color color)
         {
