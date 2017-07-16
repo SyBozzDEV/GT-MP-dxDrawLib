@@ -1,10 +1,16 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using GrandTheftMultiplayer.Server.Elements;
 using Newtonsoft.Json;
 
 namespace dxDrawLib.Server.Elements
 {
-    public abstract class DxElement
+    public abstract class DxElement : ElementEventHandler
     {
+        public delegate void PlayerActionEvent(Client client);
+        
+        public static readonly Dictionary<int, DxElement> Elements = new Dictionary<int, DxElement>();
+        
         internal static int lastInt;
         public readonly int id;
         
@@ -42,6 +48,8 @@ namespace dxDrawLib.Server.Elements
             this.relative   = relative;
 
             this.color = color;
+            
+            Elements.Add(this.id, this);
         }
 
         private void Sync()

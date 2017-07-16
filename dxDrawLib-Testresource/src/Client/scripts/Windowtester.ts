@@ -5,12 +5,13 @@ API.onResourceStart.connect(function() {
 });
 
 var testWindow = new DxWindow("Testwindow", 0.5, 0.5, 0.5, 0.25, true, new Color(100));
+testWindow.colorHeader = new Color(255, 255, 0,0);
 
 API.onKeyDown.connect(
 	function (sender, e) {
 		if (e.KeyCode == Keys.F9) {
 			testWindow.visible = !testWindow.visible;
-		}
+		} 
 	}
 );
 

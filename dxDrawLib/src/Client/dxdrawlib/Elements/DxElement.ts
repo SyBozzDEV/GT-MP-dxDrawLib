@@ -13,7 +13,7 @@ abstract class DxElement {
 	get X(): number { return this._X; }
 	set Y(value: number) { this._Y = DxElement.calculateSize(value, 2, this.relative); }
 	get Y(): number { return this._Y; }
-	set width(value: number) { this._width = DxElement.calculateSize(value, 2, this.relative); }
+	set width(value: number) { this._width = DxElement.calculateSize(value, 1, this.relative); }
 	get width(): number { return this._width; }
 	set height(value: number) { this._height = DxElement.calculateSize(value, 2, this.relative); }
 	get height(): number { return this._height; }

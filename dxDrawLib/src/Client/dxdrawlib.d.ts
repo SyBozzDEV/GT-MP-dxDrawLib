@@ -5,6 +5,9 @@
 /// <reference path="dxdrawlib/Helpers/Color.ts" />
 /// <reference path="dxdrawlib/Helpers/DxScreen.ts" />
 
+// Serverinterface
+/// <reference path="dxdrawlib/Serverinterface/ServerEvents.ts" />
+
 // ELEMENTS
 /// <reference path="dxdrawlib/Elements/DxElement.ts" />
 /// <reference path="dxdrawlib/Elements/DxWindow.ts" />
