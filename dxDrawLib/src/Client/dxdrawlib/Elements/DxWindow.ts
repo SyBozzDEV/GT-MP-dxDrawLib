@@ -1,8 +1,8 @@
 /// <reference path="../../dxdrawlib.d.ts" />
 
-class DxWindow {
+class DxWindow extends DxElement {
 
-    constructor(private _title: string) {
+    constructor() {
 
     }
 
