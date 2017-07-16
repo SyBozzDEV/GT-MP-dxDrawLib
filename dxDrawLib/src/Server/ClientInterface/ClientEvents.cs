@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using dxDrawLib.Server.Elements;
 using GrandTheftMultiplayer.Server.Elements;
 
 namespace dxDrawLib.Server.ClientInterface
@@ -27,9 +28,14 @@ namespace dxDrawLib.Server.ClientInterface
             {
                 case EVENT_PREFIX + "event":
                     int element         = Convert.ToInt32(args[0]);
-                    string elementEvent = Convert.ToString(args[0]);
+                    if (!DxElement.Elements.ContainsKey(element)) return;
                     
+                    string elementEvent = Convert.ToString(args[1]);
+
+                    object[] eventArgs = new object[args.Length - 2];
+                    for (int i = 2; i < args.Length - 2; i++) eventArgs[i] = args[i - 2];
                     
+                    DxElement.Elements[element]?.HandleEvent(sender, elementEvent, eventArgs);
                     
                     break;
             }
