@@ -8,5 +8,4 @@ class Color {
 		this.b = (this.b > 255) ? 255 : ((this.b < 0) ? 0 : this.b);
 		this.a = (this.a > 255) ? 255 : ((this.a < 0) ? 0 : this.a);
 	}
-
 }
