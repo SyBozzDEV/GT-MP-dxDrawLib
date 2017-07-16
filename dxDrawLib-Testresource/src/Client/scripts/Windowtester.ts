@@ -5,6 +5,8 @@ API.onResourceStart.connect(function() {
 });
 
 var testWindow = new DxWindow("Testwindow", 0.4, 0.4, 0.35, 0.25, true, new Color(100));
+var childWindow = new DxWindow("Children", 0, 0, 1, 1, true, null, testWindow);
+//var testButton = new DxButton("btn", 0.1, 0.1, 0.2, 0.2, null, null, testWindow);
 
 API.onKeyDown.connect(
 	function (sender, e) {
@@ -12,6 +14,7 @@ API.onKeyDown.connect(
 			testWindow.closeButton = true;
 			testWindow.moveable = true;
 			testWindow.visible = !testWindow.visible;
+			childWindow.visible = testWindow.visible;
 			API.showCursor(testWindow.visible);
 		}
 	}

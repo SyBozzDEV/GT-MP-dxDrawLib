@@ -32,11 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="src\Client" />
-    <Folder Include="src\Client\dxdrawlib\Helpers" />
-    <Folder Include="src\Client\dxdrawlib\Serverinterface" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="src\Server\ClientInterface\ClientEvents.cs" />
     <Compile Include="src\Server\DxDrawLib.cs" />
@@ -59,6 +55,9 @@
   <ItemGroup>
     <Content Include="tsconfig.json" />
     <Content Include="src\Client\**\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\Client\dxdrawlib\Elements\DxButton.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
