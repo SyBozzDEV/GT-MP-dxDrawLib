@@ -13,7 +13,7 @@ abstract class DxElement {
 	get X(): number { return this._X; }
 	set Y(value: number) { this._Y = DxElement.calculateSize(value, 2, this.relative); }
 	get Y(): number { return this._Y; }
-	set width(value: number) { this._width = DxElement.calculateSize(value, 2, this.relative); }
+	set width(value: number) { this._width = DxElement.calculateSize(value, 1, this.relative); }
 	get width(): number { return this._width; }
 	set height(value: number) { this._height = DxElement.calculateSize(value, 2, this.relative); }
 	get height(): number { return this._height; }
@@ -28,16 +28,15 @@ abstract class DxElement {
 		if (this.color == null) this.color = new Color();
 	}
 
-	private static calculateSize(value: number, type: number, bool: boolean): number
-	{
+	private static calculateSize(value: number, type: number, relative: boolean): number {
 		var result: number;
 
 		switch (type) {
 			case 1: // For X and width
-				result = (bool) ? clamp(DxScreen.width * value, 0, DxScreen.width) : clamp(value, 0, DxScreen.width);
+				result = (relative) ? clamp(DxScreen.width * value, 0, DxScreen.width) : clamp(value, 0, DxScreen.width);
 				break;
 			case 2: // For Y and height
-				result = (bool) ? clamp(DxScreen.height * value, 0, DxScreen.height) : clamp(value, 0, DxScreen.height);
+				result = (relative) ? clamp(DxScreen.height * value, 0, DxScreen.height) : clamp(value, 0, DxScreen.height);
 				break;
 		}
 
