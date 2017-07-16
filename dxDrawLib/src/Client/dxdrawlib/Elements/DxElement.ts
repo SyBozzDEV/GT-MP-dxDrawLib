@@ -19,4 +19,6 @@ abstract class DxElement {
 		if (this.color == null) this.color = new Color();
 	}
 
+	public abstract draw(): void;
+
 }
