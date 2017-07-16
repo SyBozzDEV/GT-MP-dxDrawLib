@@ -16,15 +16,16 @@ abstract class DxElement {
 	public children: DxElement[] = [];
 
 	get parentX(): number { return ((this.parent == null) ? 0 : this.parent.X); }
-	get parentY(): number { return ((this.parent == null) ? 0 : this.parent.Y); }
+	get parentY(): number { return ((this.parent == null) ? 0 : this.parent.Y + this.parent._offsetHeaderHeight); }
 	get parentWidth(): number { return ((this.parent == null) ? DxScreen.width : this.parent.width); }
 	get parentHeight(): number { return ((this.parent == null) ? DxScreen.height : this.parent.height - this.parent._offsetHeaderHeight); }
+	//get parentHeaderOffset(): number { return ((this.parent == null) ? 0 : this.parent._offsetHeaderHeight);}
 
 	get id(): number { return this._id; }
-	set X(value: number) { this._X = this.parentX + this.calculateSize(value, 1); }
-	get X(): number { return this._X; }
-	set Y(value: number) { this._Y = ((this.parent == null) ? this.parentY + this.calculateSize(value, 2) : this.parentY + this.calculateSize(value, 2) + this.parent._offsetHeaderHeight); }
-	get Y(): number { return this._Y; }
+	set X(value: number) { this._X = this.calculateSize(value, 1); }
+	get X(): number { return (this.parentX + this._X); }
+	set Y(value: number) { this._Y = this.calculateSize(value, 2); }
+	get Y(): number { return (this.parentY + this._Y); }
 	set width(value: number) { this._width = this.calculateSize(value, 1); }
 	get width(): number { return this._width; }
 	set height(value: number) { this._height = this.calculateSize(value, 2); }

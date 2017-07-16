@@ -37,8 +37,8 @@ class DxWindow extends DxElement {
 						this._closeButtonClicked = true;
 					}
 					if (mPos.X > this.X && mPos.X < ((this.X + this.width) - 20) && mPos.Y > this.Y && mPos.Y < (this.Y + this._offsetHeaderHeight) && !this._headerClicked) {
-						this._offsetHeaderClicked_X = mPos.X - this.X;
-						this._offsetHeaderClicked_Y = mPos.Y - this.Y;
+						this._offsetHeaderClicked_X = (mPos.X + this.parentX) - this.X;
+						this._offsetHeaderClicked_Y = (mPos.Y + this.parentY) - this.Y;
 						this._headerClicked = true;
 					}
 				}
@@ -57,7 +57,9 @@ class DxWindow extends DxElement {
 					}
 				}
 			}
-			for (var i = 0; i < this.children.length; i++) this.children[i].draw();
+			for (var i = 0; i < this.children.length; i++) {
+				this.children[i].draw();
+			}
 		}
 	}
 
