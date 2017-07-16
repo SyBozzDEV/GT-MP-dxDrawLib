@@ -2,6 +2,8 @@
 
 abstract class DxElement {
 
+	public visible: boolean = true;
+
 	constructor(public X: number, public Y: number, public width: number, public height: number, public relative: boolean = true, public color?: Color) {
 
 		if (this.relative) {
