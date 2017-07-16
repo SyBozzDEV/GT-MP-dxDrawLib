@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 
 namespace dxDrawLib.Server.Elements
@@ -26,6 +27,7 @@ namespace dxDrawLib.Server.Elements
 
         private void OnClose(Client client, object[] args)
         {
+            client.sendChatMessage("SERVER: WINDOW CLOSE");
             OnPlayerClose?.Invoke(client);
         }
     }

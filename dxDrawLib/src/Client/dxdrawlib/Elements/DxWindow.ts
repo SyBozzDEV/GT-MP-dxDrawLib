@@ -28,6 +28,7 @@ class DxWindow extends DxElement {
 					var mPos = API.getCursorPositionMaintainRatio();
 					if (this.closeButton && mPos.X > ((this.X + this.width) - 50) && mPos.X < (this.X + this.width) && mPos.Y > (this.Y) && mPos.Y < (this.Y + 20)) {
 						API.sendChatMessage("Close Button clicked");
+						ServerEvents.TriggerServerEvent(this.id, "close");
 					}
 				}
 			}

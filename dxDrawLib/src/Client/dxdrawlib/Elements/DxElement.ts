@@ -2,6 +2,10 @@
 
 abstract class DxElement {
 
+	public static lastId: number = 0;
+
+	protected _id: number;
+
 	private _X: number;
 	private _Y: number;
 	private _width: number;
@@ -9,6 +13,7 @@ abstract class DxElement {
 
 	public visible: boolean = false;
 
+	get id(): number { return this._id; }
 	set X(value: number) { this._X = DxElement.calculateSize(value, 1, this.relative); }
 	get X(): number { return this._X; }
 	set Y(value: number) { this._Y = DxElement.calculateSize(value, 2, this.relative); }
@@ -19,7 +24,7 @@ abstract class DxElement {
 	get height(): number { return this._height; }
 
 	constructor(X: number, Y: number, width: number, height: number, public relative: boolean = true, public color?: Color) {
-
+		this._id = DxElement.lastId++;
 		this.X = X;
 		this.Y = Y;
 		this.width = width;
