@@ -3,7 +3,7 @@
 class DxWindow extends DxElement {
 
 	public closeButton: boolean = false;
-	public moveable: boolean = false;
+	public movable: boolean = false;
 	public colorHeader: Color;
 	public colorTitle: Color;
 
@@ -57,7 +57,7 @@ class DxWindow extends DxElement {
 				this._headerClicked = false;
 			}
 			if (API.isControlPressed(24)) {
-				if (this._headerClicked && this.moveable) {
+				if (this._headerClicked && this.movable) {
 					this._X = mPos.X - this._offsetHeaderClicked_X;
 					this._Y = mPos.Y - this._offsetHeaderClicked_Y;
 				}

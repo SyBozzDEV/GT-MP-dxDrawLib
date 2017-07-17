@@ -58,9 +58,9 @@
     <Content Include="src\Client\dxdrawlib\Elements\DxElement.ts" />
     <Content Include="src\Client\dxdrawlib\Elements\DxWindow.ts" />
     <Content Include="src\Client\dxdrawlib\GtmpApi.ts" />
-    <Content Include="src\Client\dxdrawlib\helpers\Clamp.ts" />
-    <Content Include="src\Client\dxdrawlib\helpers\Color.ts" />
-    <Content Include="src\Client\dxdrawlib\helpers\DxScreen.ts" />
+    <Content Include="src\Client\dxdrawlib\Helpers\Clamp.ts" />
+    <Content Include="src\Client\dxdrawlib\Helpers\Color.ts" />
+    <Content Include="src\Client\dxdrawlib\Helpers\DxScreen.ts" />
     <Content Include="src\Client\dxdrawlib\Serverinterface\ElementTransformer.ts" />
     <Content Include="src\Client\dxdrawlib\Serverinterface\ServerEvents.ts" />
     <Content Include="src\Client\types-gt-mp\Declarations.d.ts" />
@@ -94,6 +94,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\Client\dxdrawlib\Elements\DxButton.ts" />
     <TypeScriptCompile Include="src\Client\dxdrawlib\Elements\DxRadioButton.ts" />
+    <TypeScriptCompile Include="src\Client\dxdrawlib\Helpers\DxRadioButtonKeys.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
