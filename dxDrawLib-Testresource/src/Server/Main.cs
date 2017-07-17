@@ -31,7 +31,7 @@ namespace dxDrawLibResource.Server
 
         public void OnPlayerFinishedDownload(Client client)
         {
-            window.Show(client);
+            //window.Show(client);
         }
         
     }
