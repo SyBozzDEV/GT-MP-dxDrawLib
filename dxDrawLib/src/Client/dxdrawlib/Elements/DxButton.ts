@@ -3,11 +3,12 @@
 class DxButton extends DxElement {
 
 	private _activeColor: Color;
+	private _activeTextColor: Color;
 	private get _textSize(): number { return (this.height / 100); }
 	private get _text(): string { return (((this.text.length * (this._textSize * 40)) > this.width) ? this.text.substring(0, Math.round(this.width / (this._textSize * 40))) + "..." : this.text); }
 	private _buttonClicked: boolean = false;
 
-	public enabled: boolean = false;
+	public enabled: boolean = true;
 	public textColor: Color = new Color(255, 255, 255, 255);
 	public hoverColor: Color = new Color(this.color.a, 255, 0, 0);
 	public clickColor: Color = new Color(this.color.a, 0, 0, 255);
@@ -17,6 +18,7 @@ class DxButton extends DxElement {
 	constructor(public text: string, X: number, Y: number, width: number, height: number, relative?: boolean, color?: Color, parent?: DxElement) {
 		super(X, Y, width, height, relative, color, parent);
 		this._activeColor = this.color;
+		this._activeTextColor = this.textColor;
 		this.hoverColor.a = this.color.a;
 		this.clickColor.a = this.color.a;
 	}
@@ -25,7 +27,7 @@ class DxButton extends DxElement {
 		if (this.visible) {
 			this.calculate();
 			API.drawRectangle(this.X, this.Y, this.width, this.height, this._activeColor.r, this._activeColor.g, this._activeColor.b, this._activeColor.a);
-			API.drawText(this._text, (this.X + (this.width / 2)), (this.Y + (this.height / 10)), this._textSize, this.textColor.r, this.textColor.g, this.textColor.b, this.textColor.a, 0, 1, false, false, 0);
+			API.drawText(this._text, (this.X + (this.width / 2)), (this.Y + (this.height / 10)), this._textSize, this._activeTextColor.r, this._activeTextColor.g, this._activeTextColor.b, this._activeTextColor.a, 0, 1, false, false, 0);
 
 			this.drawChildren();
 		}
@@ -34,24 +36,30 @@ class DxButton extends DxElement {
 	protected calculate() {
 		if (API.isCursorShown()) {
 			var mPos = API.getCursorPositionMaintainRatio();
-			if (API.isDisabledControlJustPressed(24)) {
+			if (this.enabled) {
+				if (API.isDisabledControlJustPressed(24)) {
+					if (this.isPointInElement(mPos)) {
+						this._buttonClicked = true;
+					}
+				}
+				if (API.isControlJustReleased(24)) {
+					if (this.isPointInElement(mPos) && this._buttonClicked) {
+						API.sendChatMessage("~b~[DxButton]", "~g~Button clicked");
+					}
+					this._buttonClicked = false;
+				}
 				if (this.isPointInElement(mPos)) {
-					this._buttonClicked = true;
+					if (this._buttonClicked) {
+						this._activeColor = this.clickColor;
+					}
+					else this._activeColor = this.hoverColor;
 				}
+				else this._activeColor = this.color;
 			}
-			if (API.isControlJustReleased(24)) {
-				if (this.isPointInElement(mPos) && this._buttonClicked) {
-					API.sendChatMessage("~b~[DxButton]", "~g~Button clicked");
-				}
-				this._buttonClicked = false;
+			else {
+				this._activeColor = this.disabledColor;
+				this._activeTextColor = new Color(255, 20, 20, 20);
 			}
-			if (this.isPointInElement(mPos)) {
-				if (this._buttonClicked) {
-					this._activeColor = this.clickColor;
-				}
-				else this._activeColor = this.hoverColor;
-			}
-			else this._activeColor = this.color;
 		}
 	}
 }
