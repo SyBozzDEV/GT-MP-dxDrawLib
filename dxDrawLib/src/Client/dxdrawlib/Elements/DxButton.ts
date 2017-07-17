@@ -27,7 +27,7 @@ class DxButton extends DxElement {
 		if (this.visible) {
 			this.calculate();
 			API.drawRectangle(this.X, this.Y, this.width, this.height, this._activeColor.r, this._activeColor.g, this._activeColor.b, this._activeColor.a);
-			API.drawText(this._text, (this.X + (this.width / 2)), (this.Y + (this.height / 10)), this._textSize, this._activeTextColor.r, this._activeTextColor.g, this._activeTextColor.b, this._activeTextColor.a, 0, 1, false, false, 0);
+			API.drawText(this._text, (this.X + (this.width / 2)), (this.Y + (this.height / 10)), this._textSize, this._activeTextColor.r, this._activeTextColor.g, this._activeTextColor.b, this._activeTextColor.a, 0, justify.center, false, false, 0);
 
 			this.drawChildren();
 		}

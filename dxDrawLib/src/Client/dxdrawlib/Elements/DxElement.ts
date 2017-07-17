@@ -6,7 +6,7 @@ abstract class DxElement {
 	public static lastId: number = 1;
 	protected _id: number;
 
-	public RadioButtonKeys: DxRadioButtonKeys = new DxRadioButtonKeys();
+	public DxRadioButtonGroups: DxRadioButtonGroups = new DxRadioButtonGroups();
 
 	protected _offsetHeaderHeight = 0;
 	protected _X: number;

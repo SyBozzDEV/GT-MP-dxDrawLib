@@ -6,13 +6,15 @@ class DxRadioButton extends DxElement {
 	private _clicked: boolean = false;
 	private _selected: boolean;
 	private get _innerRectangel(): number { return (this.height * 0.1) }
-	private _radioButtonKeys: DxRadioButtonKeys;
-	private _selectedColor: Color = new Color(0, 0, 0, 0);
+	private get _textSize(): number { return (this.height / 100); }
+	//private get _text(): string { return (((this.text.length * (this._textSize * 40)) > this.width) ? this.text.substring(0, Math.round(this.width / (this._textSize * 40))) + "..." : this.text); }
+	private _radioButtonGroup: DxRadioButtonGroups;
+	private _selectedColor: Color;
 
-	set selected(value: boolean) { this._selected = value; }
+	set selected(value: boolean) { this._selected = value; if (value) this._radioButtonGroup.changeSelected(this); }
 	get selected(): boolean { return this._selected }
 
-	set group(value: string) { this._radioButtonKeys.changeKey(value, this); this._group = value; this._radioButtonKeys.add(this); }
+	set group(value: string) { this._radioButtonGroup.changeKey(this); this._group = value; this._radioButtonGroup.add(this); }
 	get group(): string { return this._group; }
 
 	public enabled: boolean = true;
@@ -23,13 +25,14 @@ class DxRadioButton extends DxElement {
 		super(X, Y, width, height, relative, color, parent);
 		this._group = ((group != null) ? group : "");
 		if (this.parent != null) {
-			this._radioButtonKeys = this.parent.RadioButtonKeys;
+			this._radioButtonGroup = this.parent.DxRadioButtonGroups;
 		}
 		else {
-			this._radioButtonKeys = DxScreen.RadioButtonKeys;
+			this._radioButtonGroup = DxScreen.RadioButtonGroups;
 		}
-		this._radioButtonKeys.add(this);
+		this._radioButtonGroup.add(this);
 
+		this._selectedColor = this.color;
 		this.backColor = new Color(255, 255, 255, 255);
 		this.selected = selected;
 	}
@@ -39,6 +42,7 @@ class DxRadioButton extends DxElement {
 			this.calculate();
 			API.drawRectangle(this.X, this.Y, this.height, this.height, this.backColor.r, this.backColor.g, this.backColor.b, this.backColor.a);
 			API.drawRectangle(this.X + this._innerRectangel, this.Y + this._innerRectangel, this.height - (this._innerRectangel * 2), this.height - (this._innerRectangel * 2), this._selectedColor.r, this._selectedColor.g, this._selectedColor.b, this._selectedColor.a);
+			API.drawText(this.text, this.X + (this.height), this.Y, this._textSize, 255, 255, 255, 255, 0, justify.left, false, false, 0);
 		}
 	}
 
@@ -54,7 +58,7 @@ class DxRadioButton extends DxElement {
 				if (API.isControlJustReleased(24)) {
 					if (this.isPointInElement(mPos) && this._clicked) {
 						if (!this.selected) {
-							this._radioButtonKeys.changeSelected(this);
+							this.selected = true;
 							this._selectedColor = this.color;
 						}
 						else {
