@@ -6,6 +6,8 @@ abstract class DxElement {
 	public static lastId: number = 1;
 	protected _id: number;
 
+	public RadioButtonKeys: DxRadioButtonKeys = new DxRadioButtonKeys();
+
 	protected _offsetHeaderHeight = 0;
 	protected _X: number;
 	protected _Y: number;
@@ -105,6 +107,9 @@ abstract class DxElement {
 					typeStr += "[DxButton]";
 					break;
 				case 2:
+					typeStr += "[DxRadioButton]";
+					break;
+				case 3:
 					typeStr += "[DxRadioButton]";
 					break;
 			}
