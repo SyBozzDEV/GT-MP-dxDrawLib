@@ -12,7 +12,7 @@ class DxWindow extends DxElement {
 	private _offsetHeaderClicked_X: number = 0;
 	private _offsetHeaderClicked_Y: number = 0;
 
-	constructor(public title: string, X: number, Y: number, width: number, height: number, relative: boolean = true, color?: Color, parent?: DxElement) {
+	constructor(public title: string, X: number, Y: number, width: number, height: number, relative?: boolean, color?: Color, parent?: DxElement) {
 		super(X, Y, width, height, relative, color, parent);
 		this.colorHeader = new Color((this.color.a * 1.1), this.color.r, this.color.g, this.color.b);
 		this.colorTitle = new Color(255, 255, 255, 255);
@@ -57,9 +57,7 @@ class DxWindow extends DxElement {
 					}
 				}
 			}
-			for (var i = 0; i < this.children.length; i++) {
-				this.children[i].draw();
-			}
+			this.drawChildren();
 		}
 	}
 
