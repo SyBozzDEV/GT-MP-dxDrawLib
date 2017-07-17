@@ -15,7 +15,8 @@ abstract class DxElement {
 
 	public children: DxElement[] = [];
 
-	public visible: boolean = false;
+	get visible(): boolean { return this._visible; }
+	set visible(value: boolean) { this._visible = value; for (var i = 0; i < this.children.length; i++) { this.children[i].visible = value; } }
 
 	get parentX(): number { return this.parent == null ? 0 : this.parent.X; }
 	get parentY(): number { return this.parent == null ? 0 : this.parent.Y + this.parent._offsetHeaderHeight; }
