@@ -33,7 +33,7 @@ class DxButton extends DxElement {
 		}
 	}
 
-	protected calculate() {
+	protected calculate(): void {
 		if (API.isCursorShown()) {
 			var mPos = API.getCursorPositionMaintainRatio();
 			if (this.enabled) {
@@ -44,7 +44,7 @@ class DxButton extends DxElement {
 				}
 				if (API.isControlJustReleased(24)) {
 					if (this.isPointInElement(mPos) && this._buttonClicked) {
-						API.sendChatMessage("~b~[DxButton]", "~g~Button clicked");
+						this.debugMessage(1, "~g~Button clicked");
 					}
 					this._buttonClicked = false;
 				}

@@ -14,20 +14,19 @@ API.onKeyDown.connect(
 		if (e.KeyCode == Keys.F9) {
 			testWindow.closeButton = true;
 			testWindow.moveable = true;
+			testWindow.debug = true;
 			//childWindow.moveable = true;
 			testWindow.visible = !testWindow.visible;
 			API.showCursor(testWindow.visible);
 			//API.showCursor(!API.isCursorShown());
+			//childWindow.parent = null;
 		}
 	}
 );
 
-var tx = 690;
-var ty = 100;
-var ts = 15;
-
 API.onUpdate.connect(
 	function () {
 		testWindow.draw();
+		childWindow.draw();
 	}
 );
