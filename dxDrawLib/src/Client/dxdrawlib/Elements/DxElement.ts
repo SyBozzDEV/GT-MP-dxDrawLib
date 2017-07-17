@@ -2,6 +2,7 @@
 
 abstract class DxElement {
 
+	public static elements: DxElement[] = [];
 	public static lastId: number = 0;
 
 	protected _id: number;
@@ -46,6 +47,7 @@ abstract class DxElement {
 		this.width = width;
 		this.height = height;
 
+		DxElement.elements[this._id] = this;
 	}
 
 	private calculateSize(value: number, type: number): number {

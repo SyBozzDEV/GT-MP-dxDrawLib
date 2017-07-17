@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -36,12 +36,13 @@
   <ItemGroup>
     <Compile Include="src\Server\ClientInterface\ClientEvents.cs" />
     <Compile Include="src\Server\DxDrawLib.cs" />
+    <Compile Include="src\Server\Elements\DxButton.cs" />
     <Compile Include="src\Server\Elements\DxElement.cs" />
     <Compile Include="src\Server\Elements\DxWindow.cs" />
     <Compile Include="src\Server\Elements\ElementEventHandler.cs" />
     <Compile Include="src\Server\Helpers\Color.cs" />
     <Compile Include="src\Server\Helpers\Helpers.cs" />
-    <Compile Include="src\Server\SyncEntities\SyncContainer.cs" />
+    <Compile Include="src\Server\SyncEntities\SyncEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GrandTheftMultiplayer.Server, Version=0.1.513.599, Culture=neutral, PublicKeyToken=null">

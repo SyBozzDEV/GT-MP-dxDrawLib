@@ -29,7 +29,7 @@ namespace dxDrawLib.Server.Elements
         
         public override void RegisterEvents()
         {
-            this.AddEvent("close", OnClose);
+            this.RegisterEventHandler("close", OnClose);
         }
 
         private void OnClose(Client client, object[] args)

@@ -54,4 +54,8 @@ class DxButton extends DxElement {
 			else this._activeColor = this.color;
 		}
 	}
+
+	public sync(data): void {
+
+	}
 }

@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using dxDrawLib.Server.Helpers;
+using dxDrawLib.Server.SyncEntities;
 using GrandTheftMultiplayer.Server.Elements;
 using Newtonsoft.Json;
+// ReSharper disable InconsistentNaming
 
 namespace dxDrawLib.Server.Elements
 {
@@ -11,22 +14,44 @@ namespace dxDrawLib.Server.Elements
         
         public static readonly Dictionary<int, DxElement> Elements = new Dictionary<int, DxElement>();
         
-        internal static int lastInt;
+        internal static int lastInt = 1;
         public readonly int id;
         
         public float x;
         public float y;
         public float width;
         public float height;
-
         public bool relative;
 
         public Color color;
 
+        internal DxElement _parent;
+        internal List<DxElement> _children = new List<DxElement>();
+
         private bool _visible;
 
         [JsonIgnore]
-        public bool Visible
+        public DxElement parent
+        {
+            set
+            {
+                if (this._parent == value) return;
+                
+                this._parent?._children.Remove(this);
+                this._parent = value;
+                this._parent?._children.Add(this);
+            }
+            get { return this._parent; }
+        }
+        
+        [JsonProperty("parent")]
+        internal int parentId => this._parent?.id ?? -1;
+
+        [JsonIgnore]
+        public IEnumerable<DxElement> children => this._children.AsReadOnly();
+
+        [JsonIgnore]
+        public bool visible
         {
             set
             {
@@ -55,7 +80,8 @@ namespace dxDrawLib.Server.Elements
 
         private void Sync()
         {
-            DxDrawLib.API.consoleOutput(this.GetSyncString());
+            string syncText = this.GetSyncString();
+            DxDrawLib.API.consoleOutput(syncText);
         }
 
         private void Unsync()
@@ -66,12 +92,24 @@ namespace dxDrawLib.Server.Elements
         public void Delete()
         {
             Unsync();
+            Elements.Remove(id);
         }
 
         private string GetSyncString()
         {
-            return JsonConvert.SerializeObject(this);
+            Type type = this.GetType();
+            string typeName = "generic";
+            if (type == typeof(DxWindow))  typeName = "window";
+            if (type == typeof(DxButton))  typeName = "button";
+            
+            return JsonConvert.SerializeObject(new SyncEntity
+            {
+                type = typeName,
+                id = this.id,
+                element = this
+            });
         }
 
+        protected override int Id() => this.id;
     }
 }
