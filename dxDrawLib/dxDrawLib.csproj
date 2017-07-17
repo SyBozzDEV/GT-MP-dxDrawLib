@@ -60,11 +60,6 @@
     <Content Include="tsconfig.json" />
     <Content Include="src\Client\**\*" />
   </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="src\Client\dxdrawlib\Elements\DxButton.ts" />
-    <TypeScriptCompile Include="src\Client\dxdrawlib\Elements\DxRadioButton.ts" />
-    <TypeScriptCompile Include="src\Client\dxdrawlib\Helpers\DxRadioButtonKeys.ts" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
