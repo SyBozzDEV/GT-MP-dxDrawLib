@@ -59,4 +59,8 @@ class DxWindow extends DxElement {
 		}
 	}
 
+	public sync(data): void {
+
+	}
+
 }

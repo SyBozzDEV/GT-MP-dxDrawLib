@@ -6,7 +6,9 @@
 /// <reference path="dxdrawlib/Helpers/DxScreen.ts" />
 
 // Serverinterface
+/// <reference path="dxdrawlib/Serverinterface/ElementSyncer.ts" />
 /// <reference path="dxdrawlib/Serverinterface/ServerEvents.ts" />
+/// <reference path="dxdrawlib/Serverinterface/ElementTransformer.ts" />
 /// <reference path="dxdrawlib/Serverinterface/ElementTransformer.ts" />
 
 // ELEMENTS
