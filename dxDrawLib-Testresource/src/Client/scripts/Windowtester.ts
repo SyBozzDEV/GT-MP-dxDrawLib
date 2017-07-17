@@ -26,9 +26,10 @@ API.onKeyDown.connect(
 	}
 );
 
+/*
 API.onUpdate.connect(
 	function () {
 		testWindow.draw();
 		//childWindow.draw();
 	}
-);
+);*/

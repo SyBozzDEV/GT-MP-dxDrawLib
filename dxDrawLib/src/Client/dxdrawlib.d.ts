@@ -7,7 +7,9 @@
 /// <reference path="dxdrawlib/Helpers/DxRadioButtonKeys.ts" />
 
 // Serverinterface
+/// <reference path="dxdrawlib/Serverinterface/ElementSyncer.ts" />
 /// <reference path="dxdrawlib/Serverinterface/ServerEvents.ts" />
+/// <reference path="dxdrawlib/Serverinterface/ElementTransformer.ts" />
 /// <reference path="dxdrawlib/Serverinterface/ElementTransformer.ts" />
 
 // ELEMENTS
@@ -15,3 +17,5 @@
 /// <reference path="dxdrawlib/Elements/DxWindow.ts" />
 /// <reference path="dxdrawlib/Elements/DxButton.ts" />
 /// <reference path="dxdrawlib/Elements/DxRadioButton.ts" />
+
+/// <reference path="dxdrawlib/GtmpApi.ts" />

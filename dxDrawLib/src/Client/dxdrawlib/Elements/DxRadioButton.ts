@@ -58,4 +58,8 @@ class DxRadioButton extends DxElement {
 			}
 		}
 	}
+	
+	public sync(data): void {
+		
+	}
 }

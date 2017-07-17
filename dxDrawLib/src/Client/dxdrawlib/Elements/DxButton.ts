@@ -62,4 +62,8 @@ class DxButton extends DxElement {
 			}
 		}
 	}
+
+	public sync(data): void {
+
+	}
 }

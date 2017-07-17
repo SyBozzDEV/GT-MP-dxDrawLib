@@ -73,4 +73,8 @@ class DxWindow extends DxElement {
 		return this.closeButton && isPointInArea(point, this.X + this.width - 20, this.Y, this.width, this._offsetHeaderHeight);
 	}
 
+	public sync(data): void {
+
+	}
+
 }

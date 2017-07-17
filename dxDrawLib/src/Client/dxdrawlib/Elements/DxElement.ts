@@ -2,7 +2,8 @@
 
 abstract class DxElement {
 
-	public static lastId: number = 0;
+	public static elements: DxElement[] = [];
+	public static lastId: number = 1;
 	protected _id: number;
 
 	public RadioButtonKeys: DxRadioButtonKeys = new DxRadioButtonKeys();
@@ -56,7 +57,8 @@ abstract class DxElement {
 		this.Y = Y;
 		this.width = width;
 		this.height = height;
-
+		
+		DxElement.elements[this._id] = this;
 	}
 
 	private calculateSize(value: number, type: number): number {
@@ -117,5 +119,6 @@ abstract class DxElement {
 
 	public abstract draw(): void;
 	protected abstract calculate(): void;
+	public abstract sync(data): void;
 
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -36,9 +36,13 @@
   <ItemGroup>
     <Compile Include="src\Server\ClientInterface\ClientEvents.cs" />
     <Compile Include="src\Server\DxDrawLib.cs" />
+    <Compile Include="src\Server\Elements\DxButton.cs" />
     <Compile Include="src\Server\Elements\DxElement.cs" />
     <Compile Include="src\Server\Elements\DxWindow.cs" />
     <Compile Include="src\Server\Elements\ElementEventHandler.cs" />
+    <Compile Include="src\Server\Helpers\Color.cs" />
+    <Compile Include="src\Server\Helpers\Helpers.cs" />
+    <Compile Include="src\Server\SyncEntities\SyncEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GrandTheftMultiplayer.Server, Version=0.1.513.599, Culture=neutral, PublicKeyToken=null">
@@ -54,42 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="tsconfig.json" />
-    <Content Include="src\Client\dxdrawlib.d.ts" />
-    <Content Include="src\Client\dxdrawlib\Elements\DxElement.ts" />
-    <Content Include="src\Client\dxdrawlib\Elements\DxWindow.ts" />
-    <Content Include="src\Client\dxdrawlib\GtmpApi.ts" />
-    <Content Include="src\Client\dxdrawlib\Helpers\Clamp.ts" />
-    <Content Include="src\Client\dxdrawlib\Helpers\Color.ts" />
-    <Content Include="src\Client\dxdrawlib\Helpers\DxScreen.ts" />
-    <Content Include="src\Client\dxdrawlib\Serverinterface\ElementTransformer.ts" />
-    <Content Include="src\Client\dxdrawlib\Serverinterface\ServerEvents.ts" />
-    <Content Include="src\Client\types-gt-mp\Declarations.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GrandTheftMultiplayer.Client.GUI.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GrandTheftMultiplayer.Client.Javascript.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GrandTheftMultiplayer.Client.Javascript.ScriptContext.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GrandTheftMultiplayer.Client.Misc.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GrandTheftMultiplayer.Client.Sound.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GrandTheftMultiplayer.Client.Streamer.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GrandTheftMultiplayer.Client.Sync.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GrandTheftMultiplayer.Client.Util.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GrandTheftMultiplayer.Shared.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GrandTheftMultiplayer.Shared.Math.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GTA.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GTA.Math.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GTA.Native.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GTA.NaturalMotion.d.ts" />
-    <Content Include="src\Client\types-gt-mp\GTA.UI.d.ts" />
-    <Content Include="src\Client\types-gt-mp\index.d.ts" />
-    <Content Include="src\Client\types-gt-mp\Microsoft.ClearScript.d.ts" />
-    <Content Include="src\Client\types-gt-mp\NativeUI.d.ts" />
-    <Content Include="src\Client\types-gt-mp\NativeUI.UIMenu.d.ts" />
-    <Content Include="src\Client\types-gt-mp\NativeUI.UIMenuItem.d.ts" />
-    <Content Include="src\Client\types-gt-mp\NativeUI.UIResText.d.ts" />
-    <Content Include="src\Client\types-gt-mp\System.Collections.d.ts" />
-    <Content Include="src\Client\types-gt-mp\System.Collections.Generic.d.ts" />
-    <Content Include="src\Client\types-gt-mp\System.d.ts" />
-    <Content Include="src\Client\types-gt-mp\System.Drawing.d.ts" />
-    <Content Include="src\Client\types-gt-mp\System.Windows.Forms.d.ts" />
+    <Content Include="src\Client\**\*" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\Client\dxdrawlib\Elements\DxButton.ts" />

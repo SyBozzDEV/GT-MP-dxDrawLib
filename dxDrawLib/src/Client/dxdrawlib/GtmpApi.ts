@@ -5,5 +5,13 @@ API.onResourceStart.connect(function() {
 });
 
 API.onServerEventTrigger.connect(function(eventname, args)  {
-    ServerEvents.HandleEvent(eventname, args);
+    ServerEvents.HandleEvent(eventname, args);    
+});
+
+API.onUpdate.connect(function() {
+    for(let element of DxElement.elements) {
+        if (element != null && element.parent == null) {
+            element.draw();
+        }
+    } 
 });

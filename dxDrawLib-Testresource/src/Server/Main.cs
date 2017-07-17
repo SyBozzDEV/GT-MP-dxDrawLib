@@ -1,11 +1,14 @@
 ﻿using dxDrawLib.Server;
 using dxDrawLib.Server.Elements;
 using GrandTheftMultiplayer.Server.API;
+using GrandTheftMultiplayer.Server.Elements;
 
 namespace dxDrawLibResource.Server
 {
     public class Main : Script
     {
+
+        private DxWindow window;
 
         public Main()
         {
@@ -13,14 +16,22 @@ namespace dxDrawLibResource.Server
             DxDrawLib.Setup(API);
             
             SetUpTestwindow();
+
+            API.onPlayerFinishedDownload += OnPlayerFinishedDownload;
             
             API.consoleOutput("[DxDrawLib-Resource] Testresource started!");
         }
 
         public void SetUpTestwindow()
         {
-            DxWindow window = new DxWindow("Test", 0, 0, 0, 0);
-            window.Visible = true;
+            window = new DxWindow("Test", 0.25f, 0.25f, 0.25f, 0.25f);
+            window.moveable = true;
+            window.visible = true;
+        }
+
+        public void OnPlayerFinishedDownload(Client client)
+        {
+            window.Show(client);
         }
         
     }
