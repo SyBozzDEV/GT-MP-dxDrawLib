@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using dxDrawLib.Server.ClientInterface;
 using GrandTheftMultiplayer.Server.Elements;
+using Newtonsoft.Json;
 
 namespace dxDrawLib.Server.Elements
 {
@@ -29,15 +30,10 @@ namespace dxDrawLib.Server.Elements
             if (!DxElement.Elements.ContainsKey(elementId)) return;
             DxElement.Elements[elementId].HandleEvent(sender, eventname, args);
         }
-        
-        protected void TriggerEvent(string eventname, params object[] args)
-        {
-            // TODO: Implement playerloop
-        }
 
-        protected void TriggerEvent(Client client, string eventname, params object[] args)
+        protected void TriggerEvent(Client client, string elementevent, params object[] args)
         {
-            ClientEvents.TriggerEvent(client, "event", Id(), eventname, args.ToList());
+            ClientEvents.TriggerEvent(client, "event", Id(), elementevent, JsonConvert.SerializeObject(args));
         }
 
         protected abstract int Id();

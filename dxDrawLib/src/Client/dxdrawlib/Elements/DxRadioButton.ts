@@ -16,4 +16,8 @@ class DxRadioButton extends DxElement {
 	protected calculate(): void {
 
 	}
+	
+	public sync(data): void {
+		
+	}
 }

@@ -22,4 +22,11 @@ class Color {
 		this.g = g;
 		this.b = b;
 	}
+	
+	public set(a: number, r: number, g: number, b: number): void {
+		this.a = a;
+		this.r = r;
+		this.g = g;
+		this.b = b;
+	}
 }

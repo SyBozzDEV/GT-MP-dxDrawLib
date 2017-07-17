@@ -3,7 +3,7 @@
 abstract class DxElement {
 
 	public static elements: DxElement[] = [];
-	public static lastId: number = 0;
+	public static lastId: number = 1;
 	protected _id: number;
 
 	protected _offsetHeaderHeight = 0;
@@ -55,7 +55,7 @@ abstract class DxElement {
 		this.Y = Y;
 		this.width = width;
 		this.height = height;
-
+		
 		DxElement.elements[this._id] = this;
 	}
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using dxDrawLib.Server.Helpers;
 using dxDrawLib.Server.SyncEntities;
 using GrandTheftMultiplayer.Server.Elements;
@@ -28,6 +29,8 @@ namespace dxDrawLib.Server.Elements
         internal DxElement _parent;
         internal List<DxElement> _children = new List<DxElement>();
 
+        internal List<Client> knownBy = new List<Client>();
+        
         private bool _visible;
 
         [JsonIgnore]
@@ -78,15 +81,47 @@ namespace dxDrawLib.Server.Elements
             Elements.Add(this.id, this);
         }
 
-        private void Sync()
+        public void Show(Client client)
         {
+            this.Sync(client);
+        }
+
+        public void Hide(Client client)
+        {
+            this.Unsync(client);
+        }
+
+        private void Sync(Client client)
+        {
+            if(!this.knownBy.Contains(client)) this.knownBy.Add(client);
             string syncText = this.GetSyncString();
             DxDrawLib.API.consoleOutput(syncText);
+            this.TriggerEvent(client, "sync", syncText);
+        }
+        
+        private void Sync()
+        {
+            var known = this.knownBy.ToList();
+            known.Reverse();
+            foreach (var client in known)
+            {
+                Sync(client);
+            }
+        }
+
+        private void Unsync(Client client)
+        {
+            this.knownBy.Remove(client);
         }
 
         private void Unsync()
         {
-            
+            var known = this.knownBy.ToList();
+            known.Reverse();
+            foreach (var client in known)
+            {
+                Unsync(client);
+            }
         }
 
         public void Delete()
@@ -108,6 +143,11 @@ namespace dxDrawLib.Server.Elements
                 id = this.id,
                 element = this
             });
+        }
+        
+        protected void TriggerEvent(string eventname, params object[] args)
+        {
+            // TODO: Implement playerloop
         }
 
         protected override int Id() => this.id;
