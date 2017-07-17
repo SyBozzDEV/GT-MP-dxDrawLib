@@ -2,13 +2,13 @@
 
 class DxButton extends DxElement {
 
-	private _textSize: number;
 	private _activeColor: Color;
-	private _text: string;
+	private get _textSize(): number { return (this.height / 100); }
+	private get _text(): string { return (((this.text.length * (this._textSize * 40)) > this.width) ? this.text.substring(0, Math.round(this.width / (this._textSize * 40))) + "..." : this.text); }
+	private _buttonClicked: boolean = false;
 
 	public enabled: boolean = false;
 	public textColor: Color = new Color(255, 255, 255, 255);
-	//public color: Color = new Color(255);
 	public hoverColor: Color = new Color(this.color.a, 255, 0, 0);
 	public clickColor: Color = new Color(this.color.a, 0, 0, 255);
 	public disabledColor: Color = new Color(255, 10, 10, 10);
@@ -19,25 +19,39 @@ class DxButton extends DxElement {
 		this._activeColor = this.color;
 		this.hoverColor.a = this.color.a;
 		this.clickColor.a = this.color.a;
-		//API.sendChatMessage("w:" + this.width + " h:" + this.height);
-		this._textSize = (this.height / 100);
-		this.text = (((this.text.length * (this._textSize * 40)) > this.width) ? this.text.substring(0, Math.round(this.width / (this._textSize * 40))) + "..." : this.text);
 	}
 
 	public draw(): void {
 		if (this.visible) {
+			this.calculate();
 			API.drawRectangle(this.X, this.Y, this.width, this.height, this._activeColor.r, this._activeColor.g, this._activeColor.b, this._activeColor.a);
-			//API.drawText(this.text, (this.X + (this.width / 2)), (this.Y + (this.height / 10)), (this.height / 100), this.textColor.r, this.textColor.g, this.textColor.b, this.textColor.a, 0, 1, false, false, 0);
-			API.drawText(this.text, (this.X + (this.width / 2)), (this.Y + (this.height / 10)), this._textSize, this.textColor.r, this.textColor.g, this.textColor.b, this.textColor.a, 0, 1, false, false, 0);
-			if (API.isCursorShown()) {
-				var mPos = API.getCursorPositionMaintainRatio();
-				if (this.isPointInElement(mPos)) {
-					this._activeColor = this.hoverColor;
-				}
-				else this._activeColor = this.color;
-			}
+			API.drawText(this._text, (this.X + (this.width / 2)), (this.Y + (this.height / 10)), this._textSize, this.textColor.r, this.textColor.g, this.textColor.b, this.textColor.a, 0, 1, false, false, 0);
 
 			this.drawChildren();
+		}
+	}
+
+	protected calculate() {
+		if (API.isCursorShown()) {
+			var mPos = API.getCursorPositionMaintainRatio();
+			if (API.isDisabledControlJustPressed(24)) {
+				if (this.isPointInElement(mPos)) {
+					this._buttonClicked = true;
+				}
+			}
+			if (API.isControlJustReleased(24)) {
+				if (this.isPointInElement(mPos) && this._buttonClicked) {
+					API.sendChatMessage("~b~[DxButton]", "~g~Button clicked");
+				}
+				this._buttonClicked = false;
+			}
+			if (this.isPointInElement(mPos)) {
+				if (this._buttonClicked) {
+					this._activeColor = this.clickColor;
+				}
+				else this._activeColor = this.hoverColor;
+			}
+			else this._activeColor = this.color;
 		}
 	}
 }

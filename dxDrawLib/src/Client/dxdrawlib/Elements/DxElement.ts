@@ -74,6 +74,7 @@ abstract class DxElement {
 	}
 
 	public abstract draw(): void;
+	protected abstract calculate(): void;
 	public abstract sync(data): void;
 
 }

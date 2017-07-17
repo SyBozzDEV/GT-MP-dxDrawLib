@@ -21,6 +21,7 @@ class DxWindow extends DxElement {
 
 	public draw(): void {
 		if (this.visible) {
+			this.calculate();
 			API.drawText("on", 0, 0, 1, 255, 255, 255, 255, 0, 0, false, false, 0); // For Debug
 			API.drawRectangle(this.X, this.Y, this.width, this._offsetHeaderHeight, this.colorHeader.r, this.colorHeader.g, this.colorHeader.b, this.colorHeader.a); // Window Title Header
 			API.drawRectangle(this.X, this.Y, this.width, this.height, this.color.r, this.color.g, this.color.b, this.color.a); // Window
@@ -30,34 +31,37 @@ class DxWindow extends DxElement {
 				API.drawText("[X]", this.X + this.width, this.Y, 0.25, this.colorTitle.r, this.colorTitle.g, this.colorTitle.b, this.colorTitle.a, 0, 2, false, false, 0);
 			}
 
-			if (API.isCursorShown()) {
-				var mPos = API.getCursorPositionMaintainRatio();
-				if (API.isDisabledControlJustPressed(24)) {
-					if (this.isPointOnClose(mPos)) {
-						this._closeButtonClicked = true;
-					}
-					if (this.isPointOnHeader(mPos) && !this._headerClicked) {
-						this._offsetHeaderClicked_X = (mPos.X + this.parentX) - this.X;
-						this._offsetHeaderClicked_Y = (mPos.Y + this.parentY) - this.Y;
-						this._headerClicked = true;
-					}
+			this.drawChildren();
+		}
+	}
+
+	protected calculate() {
+		if (API.isCursorShown()) {
+			var mPos = API.getCursorPositionMaintainRatio();
+			if (API.isDisabledControlJustPressed(24)) {
+				if (this.isPointOnClose(mPos)) {
+					this._closeButtonClicked = true;
 				}
-				if (API.isControlJustReleased(24)) {
-					if (this._closeButtonClicked && this.isPointOnClose(mPos)) {
-						API.sendChatMessage("Close Button clicked");
-						ServerEvents.TriggerServerEvent(this.id, "close");
-					}
-					this._closeButtonClicked = false;
-					this._headerClicked = false;
-				}
-				if (API.isControlPressed(24)) {
-					if (this._headerClicked && this.moveable) {
-						this._X = mPos.X - this._offsetHeaderClicked_X;
-						this._Y = mPos.Y - this._offsetHeaderClicked_Y;
-					}
+				if (this.isPointOnHeader(mPos) && !this._headerClicked) {
+					this._offsetHeaderClicked_X = (mPos.X + this.parentX) - this.X;
+					this._offsetHeaderClicked_Y = (mPos.Y + this.parentY) - this.Y;
+					this._headerClicked = true;
 				}
 			}
-			this.drawChildren();
+			if (API.isControlJustReleased(24)) {
+				if (this._closeButtonClicked && this.isPointOnClose(mPos)) {
+					API.sendChatMessage("~b~[DxWindow]", "~g~Close Button clicked");
+					ServerEvents.TriggerServerEvent(this.id, "close");
+				}
+				this._closeButtonClicked = false;
+				this._headerClicked = false;
+			}
+			if (API.isControlPressed(24)) {
+				if (this._headerClicked && this.moveable) {
+					this._X = mPos.X - this._offsetHeaderClicked_X;
+					this._Y = mPos.Y - this._offsetHeaderClicked_Y;
+				}
+			}
 		}
 	}
 
