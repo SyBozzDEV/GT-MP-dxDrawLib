@@ -15,3 +15,4 @@
 /// <reference path="dxdrawlib/Elements/DxElement.ts" />
 /// <reference path="dxdrawlib/Elements/DxWindow.ts" />
 /// <reference path="dxdrawlib/Elements/DxButton.ts" />
+/// <reference path="dxdrawlib/Elements/DxRadioButton.ts" />

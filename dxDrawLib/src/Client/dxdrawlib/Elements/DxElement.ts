@@ -4,7 +4,6 @@ abstract class DxElement {
 
 	public static elements: DxElement[] = [];
 	public static lastId: number = 0;
-
 	protected _id: number;
 
 	protected _offsetHeaderHeight = 0;
@@ -13,6 +12,13 @@ abstract class DxElement {
 	private _width: number;
 	private _height: number;
 	private _visible: boolean;
+	private _debug: boolean = false;
+	private _parent: DxElement;
+
+	set debug(value: boolean) { this._debug = value; for (var i = 0; i < this.children.length; i++) { this.children[i].debug = value; } }
+	get debug(): boolean { return this._debug; }
+	set parent(value: DxElement) { this.setNewParent(value); }
+	get parent(): DxElement { return this._parent; }
 
 	public children: DxElement[] = [];
 
@@ -35,11 +41,14 @@ abstract class DxElement {
 	set height(value: number) { this._height = this.calculateSize(value, 2); }
 	get height(): number { return this._height; }
 
-	constructor(X: number, Y: number, width: number, height: number, public relative: boolean = true, public color?: Color, public parent?: DxElement) {
+	constructor(X: number, Y: number, width: number, height: number, public relative: boolean = true, public color?: Color, parent?: DxElement) {
 
 		if (this.relative == null) this.relative = true;
 		if (this.color == null) this.color = new Color();
-		if (this.parent != null) this.parent.children.push(this);
+		if (parent != null) {
+			this._parent = parent;
+			this._parent.children.push(this);
+		}
 
 		this._id = DxElement.lastId++;
 		this.X = X;
@@ -72,6 +81,34 @@ abstract class DxElement {
 	protected drawChildren(): void {
 		for (var i = 0; i < this.children.length; i++) {
 			this.children[i].draw();
+		}
+	}
+
+	protected setNewParent(newParent: DxElement) {
+		if (this._parent != null) {
+			var index = this._parent.children.indexOf(this);
+			if (index > -1) {
+				this._parent.children.splice(index, 1);
+			}
+		}
+		this._parent = newParent;
+	}
+
+	protected debugMessage(type: number, message: string): void {
+		if (this.debug) {
+			var typeStr: string = "~b~";
+			switch (type) {
+				case 0:
+					typeStr += "[DxWindow]";
+					break;
+				case 1:
+					typeStr += "[DxButton]";
+					break;
+				case 2:
+					typeStr += "[DxRadioButton]";
+					break;
+			}
+			API.sendChatMessage(typeStr, message);
 		}
 	}
 
