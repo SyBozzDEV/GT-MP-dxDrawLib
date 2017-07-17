@@ -12,7 +12,7 @@ class DxWindow extends DxElement {
 	private _offsetHeaderClicked_X: number = 0;
 	private _offsetHeaderClicked_Y: number = 0;
 
-	constructor(public title: string, X: number, Y: number, width: number, height: number, relative: boolean = true, color?: Color, parent?: DxElement) {
+	constructor(public title: string, X: number, Y: number, width: number, height: number, relative?: boolean, color?: Color, parent?: DxElement) {
 		super(X, Y, width, height, relative, color, parent);
 		this.colorHeader = new Color((this.color.a * 1.1), this.color.r, this.color.g, this.color.b);
 		this.colorTitle = new Color(255, 255, 255, 255);
@@ -33,17 +33,17 @@ class DxWindow extends DxElement {
 			if (API.isCursorShown()) {
 				var mPos = API.getCursorPositionMaintainRatio();
 				if (API.isDisabledControlJustPressed(24)) {
-					if (this.closeButton && mPos.X > ((this.X + this.width) - 20) && mPos.X < (this.X + this.width) && mPos.Y > (this.Y) && mPos.Y < (this.Y + this._offsetHeaderHeight)) {
+					if (this.isPointOnClose(mPos)) {
 						this._closeButtonClicked = true;
 					}
-					if (mPos.X > this.X && mPos.X < ((this.X + this.width) - 20) && mPos.Y > this.Y && mPos.Y < (this.Y + this._offsetHeaderHeight) && !this._headerClicked) {
+					if (this.isPointOnHeader(mPos) && !this._headerClicked) {
 						this._offsetHeaderClicked_X = (mPos.X + this.parentX) - this.X;
 						this._offsetHeaderClicked_Y = (mPos.Y + this.parentY) - this.Y;
 						this._headerClicked = true;
 					}
 				}
 				if (API.isControlJustReleased(24)) {
-					if (this.closeButton && this._closeButtonClicked && mPos.X > ((this.X + this.width) - 20) && mPos.X < (this.X + this.width) && mPos.Y > (this.Y) && mPos.Y < (this.Y + this._offsetHeaderHeight)) {
+					if (this._closeButtonClicked && this.isPointOnClose(mPos)) {
 						API.sendChatMessage("Close Button clicked");
 						ServerEvents.TriggerServerEvent(this.id, "close");
 					}
@@ -57,10 +57,16 @@ class DxWindow extends DxElement {
 					}
 				}
 			}
-			for (var i = 0; i < this.children.length; i++) {
-				this.children[i].draw();
-			}
+			this.drawChildren();
 		}
+	}
+
+	private isPointOnHeader(point: PointF): boolean {
+		return isPointInArea(point, this.X, this.Y, this.width - (this.closeButton ? 20 : 0), this._offsetHeaderHeight);
+	}
+
+	private isPointOnClose(point: PointF): boolean {
+		return this.closeButton && isPointInArea(point, this.X + this.width - 20, this.Y, this.width, this._offsetHeaderHeight);
 	}
 
 	public sync(data): void {

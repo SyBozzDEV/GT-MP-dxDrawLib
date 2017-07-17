@@ -11,14 +11,17 @@ abstract class DxElement {
 	protected _Y: number;
 	private _width: number;
 	private _height: number;
+	private _visible: boolean;
 
-	public visible: boolean = false;
 	public children: DxElement[] = [];
 
-	get parentX(): number { return ((this.parent == null) ? 0 : this.parent.X); }
-	get parentY(): number { return ((this.parent == null) ? 0 : this.parent.Y + this.parent._offsetHeaderHeight); }
-	get parentWidth(): number { return ((this.parent == null) ? DxScreen.width : this.parent.width); }
-	get parentHeight(): number { return ((this.parent == null) ? DxScreen.height : this.parent.height - this.parent._offsetHeaderHeight); }
+	get visible(): boolean { return this._visible; }
+	set visible(value: boolean) { this._visible = value; for (var i = 0; i < this.children.length; i++) { this.children[i].visible = value; } }
+
+	get parentX(): number { return this.parent == null ? 0 : this.parent.X; }
+	get parentY(): number { return this.parent == null ? 0 : this.parent.Y + this.parent._offsetHeaderHeight; }
+	get parentWidth(): number { return this.parent == null ? DxScreen.width : this.parent.width; }
+	get parentHeight(): number { return this.parent == null ? DxScreen.height : this.parent.height - this.parent._offsetHeaderHeight; }
 	//get parentHeaderOffset(): number { return ((this.parent == null) ? 0 : this.parent._offsetHeaderHeight);}
 
 	get id(): number { return this._id; }
@@ -33,15 +36,16 @@ abstract class DxElement {
 
 	constructor(X: number, Y: number, width: number, height: number, public relative: boolean = true, public color?: Color, public parent?: DxElement) {
 
-		if (this.parent != null) this.parent.children.push(this);
+		if (this.relative == null) this.relative = true;
 		if (this.color == null) this.color = new Color();
+		if (this.parent != null) this.parent.children.push(this);
 
 		this._id = DxElement.lastId++;
 		this.X = X;
 		this.Y = Y;
 		this.width = width;
 		this.height = height;
-		
+
 	}
 
 	private calculateSize(value: number, type: number): number {
@@ -60,8 +64,13 @@ abstract class DxElement {
 	}
 
 	public isPointInElement(point: PointF): boolean {
-		if (point.X > (this.X) && point.X < (this.X + this.width) && point.Y > (this.Y) && point.Y < (this.Y + this.width)) return true;
-		else return false;
+		return isPointInArea(point, this.X, this.Y, this.width, this.height);
+	}
+
+	protected drawChildren(): void {
+		for (var i = 0; i < this.children.length; i++) {
+			this.children[i].draw();
+		}
 	}
 
 	public abstract draw(): void;
