@@ -15,10 +15,10 @@ abstract class DxElement {
 	public visible: boolean = false;
 	public children: DxElement[] = [];
 
-	get parentX(): number { return ((this.parent == null) ? 0 : this.parent.X); }
-	get parentY(): number { return ((this.parent == null) ? 0 : this.parent.Y + this.parent._offsetHeaderHeight); }
-	get parentWidth(): number { return ((this.parent == null) ? DxScreen.width : this.parent.width); }
-	get parentHeight(): number { return ((this.parent == null) ? DxScreen.height : this.parent.height - this.parent._offsetHeaderHeight); }
+	get parentX(): number { return this.parent == null ? 0 : this.parent.X; }
+	get parentY(): number { return this.parent == null ? 0 : this.parent.Y + this.parent._offsetHeaderHeight; }
+	get parentWidth(): number { return this.parent == null ? DxScreen.width : this.parent.width; }
+	get parentHeight(): number { return this.parent == null ? DxScreen.height : this.parent.height - this.parent._offsetHeaderHeight; }
 	//get parentHeaderOffset(): number { return ((this.parent == null) ? 0 : this.parent._offsetHeaderHeight);}
 
 	get id(): number { return this._id; }
@@ -41,7 +41,7 @@ abstract class DxElement {
 		this.Y = Y;
 		this.width = width;
 		this.height = height;
-		
+
 	}
 
 	private calculateSize(value: number, type: number): number {
@@ -60,8 +60,7 @@ abstract class DxElement {
 	}
 
 	public isPointInElement(point: PointF): boolean {
-		if (point.X > (this.X) && point.X < (this.X + this.width) && point.Y > (this.Y) && point.Y < (this.Y + this.width)) return true;
-		else return false;
+		return isPointInArea(point, this.X, this.Y, this.width, this.height);
 	}
 
 	public abstract draw(): void;
