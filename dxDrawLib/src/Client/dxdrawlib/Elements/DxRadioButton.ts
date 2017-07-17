@@ -65,7 +65,7 @@ class DxRadioButton extends DxElement {
 							this.selected = false;
 							this._selectedColor = this.colorUnselected;
 						}
-						this.debugMessage(3, "Change selected index");
+						this.debugMessage(debug.radiobutton, "Change selected index");
 					}
 					this._clicked = false;
 				}

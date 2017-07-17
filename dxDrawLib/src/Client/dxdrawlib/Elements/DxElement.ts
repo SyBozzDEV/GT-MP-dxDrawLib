@@ -6,7 +6,8 @@ abstract class DxElement {
 	public static lastId: number = 1;
 	protected _id: number;
 
-	public DxRadioButtonGroups: DxRadioButtonGroups = new DxRadioButtonGroups();
+	private _DxRadioButtonGroups: DxRadioButtonGroups = new DxRadioButtonGroups();
+	get DxRadioButtonGroups(): DxRadioButtonGroups { return this._DxRadioButtonGroups; }
 
 	protected _offsetHeaderHeight = 0;
 	protected _X: number;
@@ -22,7 +23,8 @@ abstract class DxElement {
 	set parent(value: DxElement) { this.setNewParent(value); }
 	get parent(): DxElement { return this._parent; }
 
-	public children: DxElement[] = [];
+	private _children: DxElement[] = [];
+	get children(): DxElement[] { return this._children; }
 
 	get visible(): boolean { return this._visible; }
 	set visible(value: boolean) { this._visible = value; for (var i = 0; i < this.children.length; i++) { this.children[i].visible = value; } }
@@ -107,9 +109,6 @@ abstract class DxElement {
 					typeStr += "[DxButton]";
 					break;
 				case 2:
-					typeStr += "[DxRadioButton]";
-					break;
-				case 3:
 					typeStr += "[DxRadioButton]";
 					break;
 			}

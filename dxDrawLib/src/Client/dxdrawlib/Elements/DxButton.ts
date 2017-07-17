@@ -44,7 +44,7 @@ class DxButton extends DxElement {
 				}
 				if (API.isControlJustReleased(24)) {
 					if (this.isPointInElement(mPos) && this._buttonClicked) {
-						this.debugMessage(1, "~g~Button clicked");
+						this.debugMessage(debug.button, "~g~Button clicked");
 					}
 					this._buttonClicked = false;
 				}

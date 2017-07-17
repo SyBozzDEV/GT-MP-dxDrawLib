@@ -50,7 +50,7 @@ class DxWindow extends DxElement {
 			}
 			if (API.isControlJustReleased(24)) {
 				if (this._closeButtonClicked && this.isPointOnClose(mPos)) {
-					this.debugMessage(0, "~g~Close Button clicked");
+					this.debugMessage(debug.window, "~g~Close Button clicked");
 					ServerEvents.TriggerServerEvent(this.id, "close");
 				}
 				this._closeButtonClicked = false;

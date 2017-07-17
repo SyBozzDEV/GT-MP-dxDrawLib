@@ -5,3 +5,9 @@ enum justify {
 	center,
 	right
 }
+
+enum debug {
+	window = 0,
+	button,
+	radiobutton
+}

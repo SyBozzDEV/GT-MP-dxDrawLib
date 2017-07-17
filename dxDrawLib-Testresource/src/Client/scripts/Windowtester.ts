@@ -12,6 +12,7 @@ var testRadioButton = new DxRadioButton("RadioBtn", "key_1", 0.1, 0.5, 0.1, 0.1,
 var testRadioButton2 = new DxRadioButton("RadioBtn", "key_1", 0.1, 0.61, 0.1, 0.1, true, true, new Color(255, 0, 255, 0), testWindow);
 
 //testRadioButton2.group = "key_1";
+testRadioButton.selected = true;
 
 API.onKeyDown.connect(
 	function (sender, e) {
