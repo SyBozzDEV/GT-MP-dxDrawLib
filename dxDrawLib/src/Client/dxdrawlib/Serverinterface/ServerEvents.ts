@@ -9,7 +9,11 @@ class ServerEvents {
         
         switch (result.event) {
             case "sync": {
-                ElementSyncer.OnSyncElement(result.data[0]);
+                ElementSyncer.SyncElement(result.data[0]);
+                return;
+            }
+            case "hide": {
+                ElementSyncer.HideServerElement(result.data[0]);
                 return;
             }
             default: {
