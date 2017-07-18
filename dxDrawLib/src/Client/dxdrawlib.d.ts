@@ -18,5 +18,6 @@
 /// <reference path="dxdrawlib/Elements/DxButton.ts" />
 /// <reference path="dxdrawlib/Elements/DxRadioButton.ts" />
 /// <reference path="dxdrawlib/Elements/DxCheckbox.ts" />
+/// <reference path="dxdrawlib/Elements/DxTabPanel.ts" />
 
 /// <reference path="dxdrawlib/GtmpApi.ts" />
