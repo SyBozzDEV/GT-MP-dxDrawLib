@@ -9,5 +9,6 @@ enum justify {
 enum debug {
 	window = 0,
 	button,
-	radiobutton
+	radiobutton,
+	DxCheckbox
 }

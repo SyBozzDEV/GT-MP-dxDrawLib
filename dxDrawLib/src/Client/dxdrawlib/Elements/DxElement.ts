@@ -71,7 +71,7 @@ abstract class DxElement {
 		return result;
 	}
 
-	public isPointInElement(point: PointF): boolean {
+	protected isPointInElement(point: PointF): boolean {
 		return isPointInArea(point, this.X, this.Y, this.width, this.height);
 	}
 
@@ -104,6 +104,9 @@ abstract class DxElement {
 					break;
 				case 2:
 					typeStr += "[DxRadioButton]";
+					break;
+				case 3:
+					typeStr += "[DxCheckbox]";
 					break;
 			}
 			API.sendChatMessage(typeStr, "~w~" + message);

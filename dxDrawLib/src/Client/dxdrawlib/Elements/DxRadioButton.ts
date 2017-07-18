@@ -15,6 +15,7 @@ class DxRadioButton extends DxElement {
 	public enabled: boolean = true;
 	public backColor: Color = new Color(255, 255, 255, 255);
 	public colorUnselected: Color = new Color(0, 0, 0, 0);
+	public textColor: Color = new Color(255, 255, 255, 255);
 
 	//set setParent(value: DxElement) { this.changeParent(value); } // Not Supported at the moment
 	set selected(value: boolean) { this._selected = value; if (value) this._radioButtonGroup.changeSelected(this); }
@@ -42,7 +43,7 @@ class DxRadioButton extends DxElement {
 			this.calculate();
 			API.drawRectangle(this.X, this.Y, this.height, this.height, this.backColor.r, this.backColor.g, this.backColor.b, this.backColor.a);
 			API.drawRectangle(this.X + this._innerRectangel, this.Y + this._innerRectangel, this.height - (this._innerRectangel * 2), this.height - (this._innerRectangel * 2), this._selectedColor.r, this._selectedColor.g, this._selectedColor.b, this._selectedColor.a);
-			API.drawText(this._text, this.X + (this.height), this.Y, this._textSize, 255, 255, 255, 255, 0, justify.left, false, false, 0);
+			API.drawText(this._text, this.X + (this.height), this.Y, this._textSize, this.textColor.r, this.textColor.g, this.textColor.b, this.textColor.a, 0, justify.left, false, false, 0);
 		}
 	}
 

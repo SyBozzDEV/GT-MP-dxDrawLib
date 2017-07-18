@@ -24,8 +24,8 @@ class DxWindow extends DxElement {
 		if (this.visible) {
 			this.calculate();
 			if (this.debug) API.drawText("on", 0, 0, 1, 255, 255, 255, 255, 0, 0, false, false, 0); // For Debug
-			API.drawRectangle(this.X, this.Y, this.width, this._offsetHeaderHeight, this.colorHeader.r, this.colorHeader.g, this.colorHeader.b, this.colorHeader.a); // Window Title Header
 			API.drawRectangle(this.X, this.Y, this.width, this.height, this.color.r, this.color.g, this.color.b, this.color.a); // Window
+			API.drawRectangle(this.X, this.Y, this.width, this._offsetHeaderHeight, this.colorHeader.r, this.colorHeader.g, this.colorHeader.b, this.colorHeader.a); // Window Title Header
 			API.drawText(this.title, this.X + (this.width / 2), this.Y, 0.25, this.colorTitle.r, this.colorTitle.g, this.colorTitle.b, this.colorTitle.a, 0, justify.center, false, false, 0); // Window Title
 
 			if (this.closeButton) {
