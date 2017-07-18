@@ -8,6 +8,8 @@ class DxCheckbox extends DxElement {
 
 	public backColor: Color = new Color(255, 255, 255, 255);
 	public textColor: Color = new Color(255, 255, 255, 255);
+	public onClick: () => void = (function () { });
+	public enabled: boolean = true;
 
 	constructor(public text: string, X: number, Y: number, width: number, height: number, public selected: boolean = false, relative?: boolean, color?: Color, parent?: DxElement) {
 		super(X, Y, width, height, relative, color, parent);
@@ -21,26 +23,35 @@ class DxCheckbox extends DxElement {
 			if (this.selected) {
 				API.drawText("X", this.X + (this.height / 2), this.Y, this._textSize, this.color.r, this.color.g, this.color.b, this.color.a, 0, justify.center, false, false, 0);
 			}
+			if (!this.enabled) {
+				API.drawRectangle(this.X, this.Y, this.height, this.height, 0, 0, 0, 125);
+			}
 		}
 	}
 
 	protected calculate(): void {
 		if (API.isCursorShown()) {
-			var mPos = API.getCursorPositionMaintainRatio();
-			if (API.isDisabledControlJustPressed(24)) {
-				if (this.isPointInElement(mPos)) {
-					this._clicked = true;
+			if (this.enabled) {
+				var mPos = API.getCursorPositionMaintainRatio();
+				if (API.isDisabledControlJustPressed(24)) {
+					if (this.isPointInElement(mPos)) {
+						this._clicked = true;
+					}
 				}
-			}
-			if (API.isControlJustReleased(24)) {
-				if (this.isPointInElement(mPos) && this._clicked) {
-					this.debugMessage(debug.DxCheckbox, "~g~Checkbox clicked");
-					this.selected = !this.selected;
+				if (API.isControlJustReleased(24)) {
+					if (this.isPointInElement(mPos) && this._clicked) {
+						this.debugMessage(debug.DxCheckbox, "~g~Checkbox clicked");
+						this.selected = !this.selected;
+						this.onClick();
+					}
+					this._clicked = false;
 				}
-				this._clicked = false;
-			}
-			if (API.isControlPressed(24)) {
+				if (API.isControlPressed(24)) {
 
+				}
+			}
+			else {
+				// disabled
 			}
 		}
 	}

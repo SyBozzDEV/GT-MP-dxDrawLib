@@ -28,6 +28,7 @@ API.onResourceStart.connect(function() {
     testRadioButton2.group = "key_1";
     testRadioButton2.pointOffset = 0.5;
 
+    testCheckbox2.onClick = function () { this.enabled = false; };
 
     testButton.onClick = function() { API.sendChatMessage("Hello World"); };
     

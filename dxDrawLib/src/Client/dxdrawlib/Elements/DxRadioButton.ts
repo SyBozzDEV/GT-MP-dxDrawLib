@@ -5,8 +5,9 @@ class DxRadioButton extends DxElement {
 	private _group: string;
 	private _clicked: boolean = false;
 	private _selected: boolean;
-	private _pointOffset: number = 0.1;
-	private get _innerRectangel(): number { return (this.height * this._pointOffset) }
+	private _pointOffset: number;
+	private get _getRoundHeight(): number { return Math.round(this.height * 10) / 10 }
+	private get _innerRectangel(): number { return (this._getRoundHeight * this._pointOffset) }
 	private get _textSize(): number { return (this.height / 100); }
 	private get _text(): string { return (((this.text.length * (this._textSize * 40)) > (this.width - this.height)) ? this.text.substring(0, Math.round((this.width - this.height) / (this._textSize * 40))) + ((Math.round((this.width - this.height) / (this._textSize * 38)) == this.text.length) ? "" : "...") : this.text); }
 	private _radioButtonGroup: DxRadioButtonGroups = DxScreen.RadioButtonGroups;
@@ -22,7 +23,7 @@ class DxRadioButton extends DxElement {
 	get selected(): boolean { return this._selected }
 	set group(value: string) { this._radioButtonGroup.deleteElementFromGroup(this); this._group = value; this._radioButtonGroup.add(this); this.selected = false; }
 	get group(): string { return this._group; }
-	set pointOffset(value: number) { this._pointOffset = clamp((1-value), 0, 0.9) / 2; }
+	set pointOffset(value: number) { this._pointOffset = Math.round((clamp((1 - value), 0, 0.9) / 2) * 100) / 100; }
 	get pointOffset(): number { return this._offsetHeaderHeight; }
 
 	constructor(public text: string, group: string, X: number, Y: number, width: number, height: number, selected: boolean = false, relative?: boolean, color?: Color, parent?: DxElement) {
@@ -33,7 +34,7 @@ class DxRadioButton extends DxElement {
 		else this._radioButtonGroup = DxScreen.RadioButtonGroups;
 
 		this._radioButtonGroup.add(this);
-
+		this.pointOffset = 0.9;
 		this._selectedColor = this.color;
 		this.selected = selected;
 	}
@@ -41,8 +42,8 @@ class DxRadioButton extends DxElement {
 	public draw(): void {
 		if (this.visible) {
 			this.calculate();
-			API.drawRectangle(this.X, this.Y, this.height, this.height, this.backColor.r, this.backColor.g, this.backColor.b, this.backColor.a);
-			API.drawRectangle(this.X + this._innerRectangel, this.Y + this._innerRectangel, this.height - (this._innerRectangel * 2), this.height - (this._innerRectangel * 2), this._selectedColor.r, this._selectedColor.g, this._selectedColor.b, this._selectedColor.a);
+			API.drawRectangle(this.X, this.Y, this._getRoundHeight, this._getRoundHeight, this.backColor.r, this.backColor.g, this.backColor.b, this.backColor.a);
+			API.drawRectangle(this.X + this._innerRectangel, this.Y + this._innerRectangel, this._getRoundHeight - (this._innerRectangel * 2), this._getRoundHeight - (this._innerRectangel * 2), this._selectedColor.r, this._selectedColor.g, this._selectedColor.b, this._selectedColor.a);
 			API.drawText(this._text, this.X + (this.height), this.Y, this._textSize, this.textColor.r, this.textColor.g, this.textColor.b, this.textColor.a, 0, justify.left, false, false, 0);
 		}
 	}
@@ -71,7 +72,7 @@ class DxRadioButton extends DxElement {
 				}
 			}
 			else {
-
+				// disabled
 			}
 		}
 		if (this.selected) this._selectedColor.a = 255;
