@@ -21,14 +21,14 @@ class DxRadioButton extends DxElement {
 	get selected(): boolean { return this._selected }
 	set group(value: string) { this._radioButtonGroup.deleteElementFromGroup(this); this._group = value; this._radioButtonGroup.add(this); this.selected = false; }
 	get group(): string { return this._group; }
-	set pointOffset(value: number) { this._pointOffset = clamp(value, 0, 0.9) / 2; }
+	set pointOffset(value: number) { this._pointOffset = clamp((1-value), 0, 0.9) / 2; }
 	get pointOffset(): number { return this._offsetHeaderHeight; }
 
 	constructor(public text: string, group: string, X: number, Y: number, width: number, height: number, selected: boolean = false, relative?: boolean, color?: Color, parent?: DxElement) {
 		super(X, Y, width, height, relative, color, parent);
 		this._group = ((group != null) ? group : "");
 
-		if (this.getParent != null) this._radioButtonGroup = this.getParent.DxRadioButtonGroups;
+		if (this.parent != null) this._radioButtonGroup = this.parent.DxRadioButtonGroups;
 		else this._radioButtonGroup = DxScreen.RadioButtonGroups;
 
 		this._radioButtonGroup.add(this);
@@ -61,10 +61,6 @@ class DxRadioButton extends DxElement {
 							this.selected = true;
 							this._selectedColor = this.color;
 						}
-						else {
-							this.selected = false;
-							this._selectedColor = this.colorUnselected;
-						}
 						this.debugMessage(debug.radiobutton, "~g~Change selected index");
 					}
 					this._clicked = false;
@@ -84,7 +80,7 @@ class DxRadioButton extends DxElement {
 	private changeParent(parent: DxElement): void {
 		this._radioButtonGroup.deleteElementFromGroup(this);
 		super.setNewParent(parent);
-		if (this.getParent != null) this._radioButtonGroup = this.getParent.DxRadioButtonGroups;
+		if (this.parent != null) this._radioButtonGroup = this.parent.DxRadioButtonGroups;
 		else this._radioButtonGroup = DxScreen.RadioButtonGroups;
 	}
 	

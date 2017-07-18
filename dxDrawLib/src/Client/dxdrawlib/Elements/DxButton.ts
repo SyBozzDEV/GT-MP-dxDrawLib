@@ -15,6 +15,8 @@ class DxButton extends DxElement {
 	public clickColor: Color = new Color(this.color.a, 0, 0, 255);
 	public disabledColor: Color = new Color(255, 10, 10, 10);
 
+	public onClick: () => void = (function () { });
+
 
 	constructor(public text: string, X: number, Y: number, width: number, height: number, relative?: boolean, color?: Color, parent?: DxElement) {
 		super(X, Y, width, height, relative, color, parent);
@@ -46,6 +48,7 @@ class DxButton extends DxElement {
 				if (API.isControlJustReleased(24)) {
 					if (this.isPointInElement(mPos) && this._buttonClicked) {
 						this.debugMessage(debug.button, "~g~Button clicked");
+						this.onClick();
 					}
 					this._buttonClicked = false;
 				}
