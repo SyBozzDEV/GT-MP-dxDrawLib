@@ -3,7 +3,7 @@
 // Helpers
 /// <reference path="dxdrawlib/Helpers/Clamp.ts" />
 /// <reference path="dxdrawlib/Helpers/Color.ts" />
-/// <reference path="dxdrawlib/Helpers/DxRadioButtonKeys.ts" />
+/// <reference path="dxdrawlib/Helpers/DxRadioButtonGroups.ts" />
 /// <reference path="dxdrawlib/Helpers/DxScreen.ts" />
 /// <reference path="dxdrawlib/Helpers/Enums.ts" />
 
@@ -17,5 +17,6 @@
 /// <reference path="dxdrawlib/Elements/DxWindow.ts" />
 /// <reference path="dxdrawlib/Elements/DxButton.ts" />
 /// <reference path="dxdrawlib/Elements/DxRadioButton.ts" />
+/// <reference path="dxdrawlib/Elements/DxCheckbox.ts" />
 
 /// <reference path="dxdrawlib/GtmpApi.ts" />

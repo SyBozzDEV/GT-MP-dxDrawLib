@@ -15,20 +15,21 @@ class DxRadioButton extends DxElement {
 	public enabled: boolean = true;
 	public backColor: Color = new Color(255, 255, 255, 255);
 	public colorUnselected: Color = new Color(0, 0, 0, 0);
+	public textColor: Color = new Color(255, 255, 255, 255);
 
 	//set setParent(value: DxElement) { this.changeParent(value); } // Not Supported at the moment
 	set selected(value: boolean) { this._selected = value; if (value) this._radioButtonGroup.changeSelected(this); }
 	get selected(): boolean { return this._selected }
 	set group(value: string) { this._radioButtonGroup.deleteElementFromGroup(this); this._group = value; this._radioButtonGroup.add(this); this.selected = false; }
 	get group(): string { return this._group; }
-	set pointOffset(value: number) { this._pointOffset = clamp(value, 0, 0.9) / 2; }
+	set pointOffset(value: number) { this._pointOffset = clamp((1-value), 0, 0.9) / 2; }
 	get pointOffset(): number { return this._offsetHeaderHeight; }
 
 	constructor(public text: string, group: string, X: number, Y: number, width: number, height: number, selected: boolean = false, relative?: boolean, color?: Color, parent?: DxElement) {
 		super(X, Y, width, height, relative, color, parent);
 		this._group = ((group != null) ? group : "");
 
-		if (this.getParent != null) this._radioButtonGroup = this.getParent.DxRadioButtonGroups;
+		if (this.parent != null) this._radioButtonGroup = this.parent.DxRadioButtonGroups;
 		else this._radioButtonGroup = DxScreen.RadioButtonGroups;
 
 		this._radioButtonGroup.add(this);
@@ -42,7 +43,7 @@ class DxRadioButton extends DxElement {
 			this.calculate();
 			API.drawRectangle(this.X, this.Y, this.height, this.height, this.backColor.r, this.backColor.g, this.backColor.b, this.backColor.a);
 			API.drawRectangle(this.X + this._innerRectangel, this.Y + this._innerRectangel, this.height - (this._innerRectangel * 2), this.height - (this._innerRectangel * 2), this._selectedColor.r, this._selectedColor.g, this._selectedColor.b, this._selectedColor.a);
-			API.drawText(this._text, this.X + (this.height), this.Y, this._textSize, 255, 255, 255, 255, 0, justify.left, false, false, 0);
+			API.drawText(this._text, this.X + (this.height), this.Y, this._textSize, this.textColor.r, this.textColor.g, this.textColor.b, this.textColor.a, 0, justify.left, false, false, 0);
 		}
 	}
 
@@ -60,10 +61,6 @@ class DxRadioButton extends DxElement {
 						if (!this.selected) {
 							this.selected = true;
 							this._selectedColor = this.color;
-						}
-						else {
-							this.selected = false;
-							this._selectedColor = this.colorUnselected;
 						}
 						this.debugMessage(debug.radiobutton, "~g~Change selected index");
 					}
@@ -84,7 +81,7 @@ class DxRadioButton extends DxElement {
 	private changeParent(parent: DxElement): void {
 		this._radioButtonGroup.deleteElementFromGroup(this);
 		super.setNewParent(parent);
-		if (this.getParent != null) this._radioButtonGroup = this.getParent.DxRadioButtonGroups;
+		if (this.parent != null) this._radioButtonGroup = this.parent.DxRadioButtonGroups;
 		else this._radioButtonGroup = DxScreen.RadioButtonGroups;
 	}
 	

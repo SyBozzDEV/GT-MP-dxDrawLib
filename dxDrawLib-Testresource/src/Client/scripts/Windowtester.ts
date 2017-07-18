@@ -13,9 +13,18 @@ API.onResourceStart.connect(function() {
 	//var testWindow = new DxButton("Button", 0, 0, 1, 1, null, null);
 	testRadioButton1 = new DxRadioButton("RadioButton", "key_1", 0.1, 0.5, 0.17, 0.1, true, true, new Color(255, 0, 255, 0), testWindow);
 	testRadioButton2 = new DxRadioButton("RadioButton", "key_2", 0.1, 0.61, 0.1, 0.1, true, true, new Color(255, 0, 255, 0), testWindow);
+    
+	var testCheckbox1 = new DxCheckbox("Checkbox", 0.5, 0, 0.1, 0.1, true, true, null, testWindow);
+    var testCheckbox2 = new DxCheckbox("Checkbox", 0.5, 0.11, 0.2, 0.1, false, true, null, testWindow);
+    
+    var testRadioButton3 = new DxRadioButton("RadioButton", "key_2", 0.5, 0.5, 0.17, 0.1, true, true, new Color(255, 0, 255, 0), testWindow);
+    var testRadioButton4 = new DxRadioButton("RadioButton", "key_2", 0.5, 0.61, 0.1, 0.1, true, true, new Color(255, 0, 255, 0), testWindow);
 
-	testRadioButton2.group = "key_1";
-	testRadioButton2.pointOffset = 0.9;
+    testRadioButton2.group = "key_1";
+    testRadioButton2.pointOffset = 0.5;
+
+
+    testButton.onClick = function() { API.sendChatMessage("Hello World"); };
     
 });
 

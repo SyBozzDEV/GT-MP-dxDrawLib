@@ -21,13 +21,13 @@ abstract class DxElement {
 	get children(): DxElement[] { return this._children; }	
 	set debug(value: boolean) { this._debug = value; for (var i = 0; i < this.children.length; i++) { this.children[i].debug = value; } }
 	get debug(): boolean { return this._debug; }
-	get getParent(): DxElement { return this._parent; }
+	get parent(): DxElement { return this._parent; }
 	get visible(): boolean { return this._visible; }
 	set visible(value: boolean) { this._visible = value; for (var i = 0; i < this.children.length; i++) { this.children[i].visible = value; } }
-	get parentX(): number { return this.getParent == null ? 0 : this.getParent.X; }
-	get parentY(): number { return this.getParent == null ? 0 : this.getParent.Y + this.getParent._offsetHeaderHeight; }
-	get parentWidth(): number { return this.getParent == null ? DxScreen.width : this.getParent.width; }
-	get parentHeight(): number { return this.getParent == null ? DxScreen.height : this.getParent.height - this.getParent._offsetHeaderHeight; }
+	get parentX(): number { return this.parent == null ? 0 : this.parent.X; }
+	get parentY(): number { return this.parent == null ? 0 : this.parent.Y + this.parent._offsetHeaderHeight; }
+	get parentWidth(): number { return this.parent == null ? DxScreen.width : this.parent.width; }
+	get parentHeight(): number { return this.parent == null ? DxScreen.height : this.parent.height - this.parent._offsetHeaderHeight; }
 	get id(): number { return this._id; }
 	set X(value: number) { this._X = this.calculateSize(value, 1); }
 	get X(): number { return (this.parentX + this._X); }
@@ -61,7 +61,7 @@ abstract class DxElement {
 		else 			return clamp(this.relative ? (this.parentHeight * value) : DxScreen.maintainVertical(value)  , 0, this.parentHeight);
 	}
 
-	public isPointInElement(point: PointF): boolean {
+	protected isPointInElement(point: PointF): boolean {
 		return isPointInArea(point, this.X, this.Y, this.width, this.height);
 	}
 
@@ -94,6 +94,9 @@ abstract class DxElement {
 					break;
 				case 2:
 					typeStr += "[DxRadioButton]";
+					break;
+				case 3:
+					typeStr += "[DxCheckbox]";
 					break;
 			}
 			API.sendChatMessage(typeStr, "~w~" + message);
