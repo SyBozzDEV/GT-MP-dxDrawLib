@@ -10,7 +10,9 @@ namespace dxDrawLib.Server.Elements
         public string title;
         public Color colorHeader;
         public Color colorTitle;
-        public bool moveable;
+        public bool movable;
+        public bool closeButton;
+        public bool debug;
         
         public DxWindow(string title, float x, float y, float width, float height, bool relative=true) 
             : this(title, x, y, width, height, relative, new Color(200,0,0,0)) {}

@@ -1,5 +1,6 @@
 ﻿using dxDrawLib.Server;
 using dxDrawLib.Server.Elements;
+using dxDrawLib.Server.Helpers;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 
@@ -25,7 +26,11 @@ namespace dxDrawLibResource.Server
         public void SetUpTestwindow()
         {
             window = new DxWindow("Test", 100, 100, 500, 500, false);
-            window.moveable = true;
+            window.movable = true;
+            window.closeButton = true;
+            window.debug = true;
+            window.colorHeader = new Color(220, 200, 0,0);
+            
             window.visible = true;
         }
 
