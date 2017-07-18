@@ -9,14 +9,9 @@ class DxScreen {
 	static hRatio: number;
 	
 	public static Init() {
-		let baseWidth = 1920;
-		let baseHeight = 1080;
-		
 		let resolution = API.getScreenResolution();
-
-		DxScreen.vRatio = resolution.Height / baseHeight;
-		DxScreen.hRatio = resolution.Width / baseWidth;
-		
+		DxScreen.vRatio = resolution.Height / DxScreen.width;
+		DxScreen.hRatio = resolution.Width / DxScreen.height;		
 	}
 
 	public static maintainVertical(height: number): number {
