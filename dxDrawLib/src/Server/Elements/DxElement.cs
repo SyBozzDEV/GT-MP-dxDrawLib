@@ -33,8 +33,7 @@ namespace dxDrawLib.Server.Elements
         
         private bool _visible;
 
-        [JsonIgnore]
-        public DxElement parent
+        internal DxElement parent
         {
             set
             {
@@ -65,9 +64,9 @@ namespace dxDrawLib.Server.Elements
         }
 
         protected DxElement(float x, float y, float width, float height, bool relative = true)
-            : this(x, y, width, height, relative, new Color(200, 0, 0, 0)) {}
+            : this(x, y, width, height, relative, new Color(200, 0, 0, 0), null) {}
         
-        protected DxElement(float x, float y, float width, float height, bool relative, Color color)
+        protected DxElement(float x, float y, float width, float height, bool relative, Color color, DxElement parent=null)
         {
             this.id         = lastInt++;
             this.x          = x;
@@ -77,6 +76,7 @@ namespace dxDrawLib.Server.Elements
             this.relative   = relative;
 
             this.color = color;
+            this.parent = parent;
             
             Elements.Add(this.id, this);
         }
@@ -97,6 +97,8 @@ namespace dxDrawLib.Server.Elements
             string syncText = this.GetSyncString();
             DxDrawLib.API.consoleOutput(syncText);
             this.TriggerEvent(client, "sync", syncText);
+            
+            foreach (var child in this._children) child.Sync(client);
         }
         
         private void Sync()
@@ -112,6 +114,7 @@ namespace dxDrawLib.Server.Elements
         private void Unsync(Client client)
         {
             this.knownBy.Remove(client);
+            foreach (var child in this._children) child.Unsync(client);
         }
 
         private void Unsync()

@@ -14,4 +14,13 @@ class ElementTransformer {
         return ElementTransformer.transformations.indexOf(elementid);
     }
 
+    public static GetElementByClientId(elementid: number): DxElement {
+        if (elementid == -1) return null;
+        return DxElement.elements[elementid];
+    }
+    
+    public static GetElementByServerId(elementid: number): DxElement {
+        return ElementTransformer.GetElementByClientId(ElementTransformer.ServerElementToClient(elementid));
+    }
+
 }

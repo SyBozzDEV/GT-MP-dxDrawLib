@@ -16,18 +16,13 @@ namespace dxDrawLib.Server.Elements
         
         public DxWindow(string title, float x, float y, float width, float height, bool relative=true) 
             : this(title, x, y, width, height, relative, new Color(200,0,0,0)) {}
-        
-        public DxWindow(string title, float x, float y, float width, float height, bool relative, Color color) 
-            : this(title, x, y, width, height, relative, color, new Color((int)(200 * 1.1f),0,0,0)) {}
-        
-        public DxWindow(string title, float x, float y, float width, float height, bool relative, Color color, Color colorHeader) 
-            : this(title, x, y, width, height, relative, color, colorHeader, new Color(255, 255, 255, 255)) {}
 
-        public DxWindow(string title, float x, float y, float width, float height, bool relative, Color color, Color colorHeader, Color colorTitle) : base(x, y, width, height, relative, color)
+        public DxWindow(string title, float x, float y, float width, float height, bool relative, Color color, DxElement parent=null) 
+            : base(x, y, width, height, relative, color, parent)
         {
             this.title         = title;
-            this.colorHeader   = colorHeader;
-            this.colorTitle    = colorTitle;
+            this.colorHeader   = new Color((int)(200 * 1.1f),0,0,0);
+            this.colorTitle    = new Color(255,255,255,255);
         }
         
         public override void RegisterEvents()
