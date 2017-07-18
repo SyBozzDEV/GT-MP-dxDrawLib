@@ -24,14 +24,14 @@ namespace dxDrawLibResource.Server
 
         public void SetUpTestwindow()
         {
-            window = new DxWindow("Test", 0.25f, 0.25f, 0.25f, 0.25f);
+            window = new DxWindow("Test", 100, 100, 500, 500, false);
             window.moveable = true;
             window.visible = true;
         }
 
         public void OnPlayerFinishedDownload(Client client)
         {
-            //window.Show(client);
+            window.Show(client);
         }
         
     }

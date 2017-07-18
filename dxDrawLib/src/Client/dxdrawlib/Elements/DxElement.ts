@@ -57,18 +57,8 @@ abstract class DxElement {
 	}
 
 	private calculateSize(value: number, type: number): number {
-		var result: number;
-
-		switch (type) {
-			case 1: // For X and width
-				result = (this.relative) ? clamp(this.parentWidth * value, 0, this.parentWidth) : clamp(value, 0, this.parentWidth);
-				break;
-			case 2: // For Y and height
-				result = (this.relative) ? clamp(this.parentHeight * value, 0, this.parentHeight) : clamp(value, 0, this.parentHeight);
-				break;
-		}
-
-		return result;
+		if(type == 1) 	return clamp(this.relative ? (this.parentWidth  * value) : DxScreen.maintainHorizontal(value), 0, this.parentWidth);
+		else 			return clamp(this.relative ? (this.parentHeight * value) : DxScreen.maintainVertical(value)  , 0, this.parentHeight);
 	}
 
 	public isPointInElement(point: PointF): boolean {

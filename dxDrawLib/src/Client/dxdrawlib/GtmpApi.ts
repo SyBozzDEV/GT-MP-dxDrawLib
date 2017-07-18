@@ -10,7 +10,7 @@ API.onServerEventTrigger.connect(function(eventname, args)  {
 
 API.onUpdate.connect(function() {
     for(let element of DxElement.elements) {
-        if (element != null && element.parent == null) {
+        if (element != null && element.getParent == null) {
             element.draw();
         }
     } 
