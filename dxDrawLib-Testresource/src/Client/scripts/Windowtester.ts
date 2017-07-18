@@ -20,6 +20,7 @@ var testRadioButton4 = new DxRadioButton("RadioButton", "key_2", 0.5, 0.61, 0.1,
 testRadioButton2.group = "key_1";
 testRadioButton2.pointOffset = 0.5;
 
+testCheckbox2.onClick = function () { this.enabled = false; };
 
 testButton.onClick = function() { API.sendChatMessage("Hello World"); };
 
