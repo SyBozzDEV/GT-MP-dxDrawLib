@@ -12,7 +12,7 @@ class DxRadioButtonGroups {
 		this.groups[group].push(element);
 	}
 
-	public changeKey(element: DxRadioButton): void {
+	public deleteElementFromGroup(element: DxRadioButton): void {
 		var group = element.group;
 		if (this.groups[group] != null) {
 			var index = this.groups[group].indexOf(element);

@@ -2,12 +2,13 @@
 
 class DxButton extends DxElement {
 
-	private _activeColor: Color;
-	private _activeTextColor: Color;
 	private get _textSize(): number { return (this.height / 100); }
 	private get _text(): string { return (((this.text.length * (this._textSize * 40)) > this.width) ? this.text.substring(0, Math.round(this.width / (this._textSize * 40))) + "..." : this.text); }
+	private _activeColor: Color;
+	private _activeTextColor: Color;
 	private _buttonClicked: boolean = false;
 
+	//public set setParent(value: DxElement) { super.setNewParent(value); } // Not Supported at the moment
 	public enabled: boolean = true;
 	public textColor: Color = new Color(255, 255, 255, 255);
 	public hoverColor: Color = new Color(this.color.a, 255, 0, 0);

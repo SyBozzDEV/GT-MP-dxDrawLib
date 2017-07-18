@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="src\Client\dxdrawlib\Helpers\Enums.ts" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="src\Server\ClientInterface\ClientEvents.cs" />
     <Compile Include="src\Server\DxDrawLib.cs" />
     <Compile Include="src\Server\Elements\DxButton.cs" />

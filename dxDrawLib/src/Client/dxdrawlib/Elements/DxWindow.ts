@@ -2,15 +2,16 @@
 
 class DxWindow extends DxElement {
 
-	public closeButton: boolean = false;
-	public movable: boolean = false;
-	public colorHeader: Color;
-	public colorTitle: Color;
-
 	private _closeButtonClicked: boolean = false;
 	private _headerClicked: boolean = false;
 	private _offsetHeaderClicked_X: number = 0;
 	private _offsetHeaderClicked_Y: number = 0;
+
+	//public set setParent(value: DxElement) { super.setNewParent(value); } // Not Supported at the moment
+	public closeButton: boolean = false;
+	public movable: boolean = false;
+	public colorHeader: Color;
+	public colorTitle: Color;
 
 	constructor(public title: string, X: number, Y: number, width: number, height: number, relative?: boolean, color?: Color, parent?: DxElement) {
 		super(X, Y, width, height, relative, color, parent);
