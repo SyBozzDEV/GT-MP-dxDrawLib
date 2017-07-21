@@ -17,26 +17,26 @@ abstract class DxElement {
 	public static elements: DxElement[] = [];
 	public static lastId: number = 1;
 	
-	get DxRadioButtonGroups(): DxRadioButtonGroups { return this._DxRadioButtonGroups; }
-	get children(): DxElement[] { return this._children; }	
-	set debug(value: boolean) { this._debug = value; for (var i = 0; i < this.children.length; i++) { this.children[i].debug = value; } }
-	get debug(): boolean { return this._debug; }
-	get parent(): DxElement { return this._parent; }
-	get visible(): boolean { return this._visible; }
-	set visible(value: boolean) { this._visible = value; for (var i = 0; i < this.children.length; i++) { this.children[i].visible = value; } }
-	get parentX(): number { return this.parent == null ? 0 : this.parent.X; }
-	get parentY(): number { return this.parent == null ? 0 : this.parent.Y + this.parent._offsetHeaderHeight; }
-	get parentWidth(): number { return this.parent == null ? DxScreen.width : this.parent.width; }
-	get parentHeight(): number { return this.parent == null ? DxScreen.height : this.parent.height - this.parent._offsetHeaderHeight; }
-	get id(): number { return this._id; }
-	set X(value: number) { this._X = this.calculateSize(value, 1); }
-	get X(): number { return (this.parentX + this._X); }
-	set Y(value: number) { this._Y = this.calculateSize(value, 2); }
-	get Y(): number { return (this.parentY + this._Y); }
-	set width(value: number) { this._width = this.calculateSize(value, 1); }
-	get width(): number { return this._width; }
-	set height(value: number) { this._height = this.calculateSize(value, 2); }
-	get height(): number { return this._height; }
+	get DxRadioButtonGroups(): 	DxRadioButtonGroups { return this._DxRadioButtonGroups; }
+	get children(): DxElement[] 		{ return this._children; }	
+	set debug(value: boolean) 			{ this._debug = value; for (let child of this.children) { child.debug = value; } }
+	get debug(): boolean 				{ return this._debug; }
+	get parent(): DxElement 			{ return this._parent; }
+	get visible(): boolean 				{ return this._visible; }
+	set visible(value: boolean) 		{ this._visible = value; for (let child of this.children) { child.visible = value; } }
+	get parentX(): number 				{ return this.parent == null ? 0 : this.parent.X; }
+	get parentY(): number 				{ return this.parent == null ? 0 : this.parent.Y + this.parent._offsetHeaderHeight; }
+	get parentWidth(): number 			{ return this.parent == null ? DxScreen.width : this.parent.width; }
+	get parentHeight(): number 			{ return this.parent == null ? DxScreen.height : this.parent.height - this.parent._offsetHeaderHeight; }
+	get id(): number 					{ return this._id; }
+	set X(value: number) 				{ this._X = this.calculateSize(value, 1); }
+	get X(): number 					{ return (this.parentX + this._X); }
+	set Y(value: number) 				{ this._Y = this.calculateSize(value, 2); }
+	get Y(): number 					{ return (this.parentY + this._Y); }
+	set width(value: number) 			{ this._width = this.calculateSize(value, 1); }
+	get width(): number 				{ return this._width; }
+	set height(value: number) 			{ this._height = this.calculateSize(value, 2); }
+	get height(): number 				{ return this._height; }
 
 	constructor(X: number, Y: number, width: number, height: number, public relative: boolean = true, public color?: Color, parent?: DxElement) {
 
@@ -66,9 +66,7 @@ abstract class DxElement {
 	}
 
 	protected drawChildren(): void {
-		for (var i = 0; i < this.children.length; i++) {
-			this.children[i].draw();
-		}
+		for (let child of this.children) child.draw();
 	}
 
 	protected setNewParent(newParent: DxElement) {
