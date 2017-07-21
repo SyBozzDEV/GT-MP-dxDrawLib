@@ -90,5 +90,7 @@ namespace dxDrawLib.Server.Helpers
             this.b = (int) (this._b * (1 - factor));
         }
 
+        public Color Clone() => new Color(this._a, this._r, this._g, this._b);
+
     }
 }

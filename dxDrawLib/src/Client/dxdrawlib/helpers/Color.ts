@@ -32,9 +32,7 @@ class Color {
 			this._r = (value >> 8 * 2) & 255;
 			this._g = (value >> 8) & 255;
 			this._b = value & 255;
-			
-		}
-		
+		}		
 	}
 	
 	public set(a: number, r: number, g: number, b: number): void {
@@ -56,5 +54,9 @@ class Color {
 		this.r = this._r * (1 - factor);
 		this.g = this._g * (1 - factor);
 		this.b = this._b * (1 - factor);
+	}
+	
+	public Clone(): Color {
+		return new Color(this._a, this._r, this._g, this._b);
 	}
 }
