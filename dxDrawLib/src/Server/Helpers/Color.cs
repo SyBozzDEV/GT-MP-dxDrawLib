@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace dxDrawLib.Server.Helpers
@@ -15,11 +16,33 @@ namespace dxDrawLib.Server.Helpers
         [JsonProperty("b")]
         private int _b;
 
-        public Color(System.Drawing.Color color) : this(color.A, color.R, color.G, color.B) {}
 
+        public Color(string hex)
+        {
+            if (hex.StartsWith("#")) hex = hex.Substring(1);
+            int length = hex.Length;
+            
+            long value = Convert.ToInt32(hex, 16);
+
+            if (length == 8) this._a = (int) (value >> 8 * 3) & 255;
+            else this._a = 255;
+            
+            this._r = (int) (value >> 8 * 2) & 255;
+            this._g = (int) (value >> 8 * 1) & 255;
+            this._b = (int) value & 255;
+        }
+        
         public Color(int a, int r, int g, int b)
         {
             this.a = a;
+            this.r = r;
+            this.g = g;
+            this.b = b;
+        }
+        
+        public Color(int r, int g, int b)
+        {
+            this.a = 255;
             this.r = r;
             this.g = g;
             this.b = b;
@@ -51,6 +74,20 @@ namespace dxDrawLib.Server.Helpers
         {
             set { this._b = Helpers.Clamp(value, 0, 255); }
             get { return this._b; }
+        }
+
+        public void Lighten(float factor)
+        {
+            this.r = (int) (this._r + (255 - this._r) * factor);
+            this.g = (int) (this._g + (255 - this._g) * factor);
+            this.b = (int) (this._b + (255 - this._b) * factor);
+        }
+
+        public void Darken(float factor)
+        {
+            this.r = (int) (this._r * (1 - factor));
+            this.g = (int) (this._g * (1 - factor));
+            this.b = (int) (this._b * (1 - factor));
         }
 
     }

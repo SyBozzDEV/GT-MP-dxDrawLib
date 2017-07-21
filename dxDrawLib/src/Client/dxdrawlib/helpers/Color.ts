@@ -16,11 +16,25 @@ class Color {
 	set b(value: number) { this._b = Math.round(clamp(value, 0, 255)); }
 	get b(): number { return this._b; }
 
-	constructor(a: number = 200, r: number = 0, g: number = 0, b: number = 0) {
-		this.a = a;
-		this.r = r;
-		this.g = g;
-		this.b = b;
+	constructor(a: number|string = 200, r: number = 0, g: number = 0, b: number = 0) {
+		if(typeof a == "number") {
+			this.a = a;
+			this.r = r;
+			this.g = g;
+			this.b = b;
+		} else if(typeof a == "string") {	
+			if(a.charAt(0) == '#') a = a.substr(1);
+			let value = parseInt(a, 16);
+			
+			if (a.length == 8) this._a = (value >> 8 * 3) & 255;
+			else this._a = 255;
+
+			this._r = (value >> 8 * 2) & 255;
+			this._g = (value >> 8) & 255;
+			this._b = value & 255;
+			
+		}
+		
 	}
 	
 	public set(a: number, r: number, g: number, b: number): void {
@@ -28,5 +42,19 @@ class Color {
 		this.r = r;
 		this.g = g;
 		this.b = b;
+	}
+
+	public Lighten(factor: number): void
+	{
+		this.r = (this._r + (255 - this._r) * factor);
+		this.g = (this._g + (255 - this._g) * factor);
+		this.b = (this._b + (255 - this._b) * factor);
+	}
+	
+	public Darken(factor: number)
+	{
+		this.r = this._r * (1 - factor);
+		this.g = this._g * (1 - factor);
+		this.b = this._b * (1 - factor);
 	}
 }
