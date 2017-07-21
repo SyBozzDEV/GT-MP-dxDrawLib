@@ -42,18 +42,20 @@ class Color {
 		this.b = b;
 	}
 
-	public Lighten(factor: number): void
+	public Lighten(factor: number): Color
 	{
 		this.r = (this._r + (255 - this._r) * factor);
 		this.g = (this._g + (255 - this._g) * factor);
 		this.b = (this._b + (255 - this._b) * factor);
+		return this;
 	}
 	
-	public Darken(factor: number)
+	public Darken(factor: number): Color
 	{
 		this.r = this._r * (1 - factor);
 		this.g = this._g * (1 - factor);
 		this.b = this._b * (1 - factor);
+		return this;
 	}
 	
 	public Clone(): Color {

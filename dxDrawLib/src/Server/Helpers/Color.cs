@@ -76,18 +76,22 @@ namespace dxDrawLib.Server.Helpers
             get { return this._b; }
         }
 
-        public void Lighten(float factor)
+        public Color Lighten(float factor)
         {
             this.r = (int) (this._r + (255 - this._r) * factor);
             this.g = (int) (this._g + (255 - this._g) * factor);
             this.b = (int) (this._b + (255 - this._b) * factor);
+
+            return this;
         }
 
-        public void Darken(float factor)
+        public Color Darken(float factor)
         {
             this.r = (int) (this._r * (1 - factor));
             this.g = (int) (this._g * (1 - factor));
             this.b = (int) (this._b * (1 - factor));
+
+            return this;
         }
 
         public Color Clone() => new Color(this._a, this._r, this._g, this._b);
