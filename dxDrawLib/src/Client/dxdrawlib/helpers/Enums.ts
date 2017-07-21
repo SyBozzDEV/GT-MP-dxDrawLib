@@ -10,5 +10,6 @@ enum debug {
 	window = 0,
 	button,
 	radiobutton,
-	DxCheckbox
+	DxCheckbox,
+	DxTabPanel
 }

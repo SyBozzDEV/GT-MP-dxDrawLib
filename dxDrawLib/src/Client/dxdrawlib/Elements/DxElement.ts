@@ -12,7 +12,7 @@ abstract class DxElement {
 	private _visible: boolean;
 	private _debug: boolean = false;
 	private _parent: DxElement;
-	private _children: DxElement[] = [];
+	protected _children: DxElement[] = [];
 	
 	public static elements: DxElement[] = [];
 	public static lastId: number = 1;
@@ -44,7 +44,7 @@ abstract class DxElement {
 		if (this.color == null) this.color = new Color();
 		if (parent != null) {
 			this._parent = parent;
-			this._parent.children.push(this);
+			this._parent._children.push(this);
 		}
 
 		this._id = DxElement.lastId++;
@@ -95,6 +95,9 @@ abstract class DxElement {
 					break;
 				case 3:
 					typeStr += "[DxCheckbox]";
+					break;
+				case 4:
+					typeStr += "[DxTabPanel]";
 					break;
 			}
 			API.sendChatMessage(typeStr, "~w~" + message);

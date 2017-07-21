@@ -45,6 +45,9 @@ class DxRadioButton extends DxElement {
 			API.drawRectangle(this.X, this.Y, this._getRoundHeight, this._getRoundHeight, this.backColor.r, this.backColor.g, this.backColor.b, this.backColor.a);
 			API.drawRectangle(this.X + this._innerRectangel, this.Y + this._innerRectangel, this._getRoundHeight - (this._innerRectangel * 2), this._getRoundHeight - (this._innerRectangel * 2), this._selectedColor.r, this._selectedColor.g, this._selectedColor.b, this._selectedColor.a);
 			API.drawText(this._text, this.X + (this.height), this.Y, this._textSize, this.textColor.r, this.textColor.g, this.textColor.b, this.textColor.a, 0, justify.left, false, false, 0);
+			if (!this.enabled) {
+				API.drawRectangle(this.X, this.Y, this.height, this.height, 0, 0, 0, 75);
+			}
 		}
 	}
 
