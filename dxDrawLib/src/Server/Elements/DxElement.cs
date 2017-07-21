@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using dxDrawLib.Server.Helpers;
-using dxDrawLib.Server.SyncEntities;
+using dxDrawLib.Server.Models;
 using GrandTheftMultiplayer.Server.Elements;
 using Newtonsoft.Json;
 // ReSharper disable InconsistentNaming
@@ -62,11 +62,8 @@ namespace dxDrawLib.Server.Elements
             }
             get { return _visible; }
         }
-
-        protected DxElement(float x, float y, float width, float height, bool relative = true)
-            : this(x, y, width, height, relative, new Color(200, 0, 0, 0), null) {}
         
-        protected DxElement(float x, float y, float width, float height, bool relative, Color color, DxElement parent=null)
+        protected DxElement(float x, float y, float width, float height, bool relative = false, Color color = null, DxElement parent=null)
         {
             this.id         = lastInt++;
             this.x          = x;
@@ -75,7 +72,7 @@ namespace dxDrawLib.Server.Elements
             this.height     = height;
             this.relative   = relative;
 
-            this.color = color;
+            this.color = color ?? new Color(200, 0, 0, 0);
             this.parent = parent;
             
             Elements.Add(this.id, this);
@@ -140,7 +137,7 @@ namespace dxDrawLib.Server.Elements
             if (type == typeof(DxWindow))  typeName = "window";
             if (type == typeof(DxButton))  typeName = "button";
             
-            return JsonConvert.SerializeObject(new SyncEntity
+            return JsonConvert.SerializeObject(new ElementSyncModel
             {
                 type = typeName,
                 id = this.id,

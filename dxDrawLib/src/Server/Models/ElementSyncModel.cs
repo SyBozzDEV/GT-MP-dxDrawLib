@@ -1,8 +1,8 @@
 ﻿using dxDrawLib.Server.Elements;
 
-namespace dxDrawLib.Server.SyncEntities
+namespace dxDrawLib.Server.Models
 {
-    public class SyncEntity
+    public class ElementSyncModel
     {
         public string type;
         public int id;

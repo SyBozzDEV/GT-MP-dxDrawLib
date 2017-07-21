@@ -7,13 +7,13 @@ class ElementSyncer {
         let eD = data.element;
         
         let cElementId = ElementTransformer.ServerElementToClient(data.id);
+        let parent = ElementTransformer.GetElementByServerId(eD.parent);
         let element;
         
         // ELEMENT DOESN'T EXISTS, CREATE ONE
         switch(data.type) {
             case "window": {
                 if (cElementId === -1) {
-                    let parent = ElementTransformer.GetElementByServerId(eD.parent);
                     element = new DxWindow(eD.title, eD.x, eD.y, eD.width, eD.height, eD.relative, new Color(eD.color.a,  eD.color.r, eD.color.g, eD.color.b), parent);
                 }
                 else element = ElementTransformer.GetElementByClientId(cElementId);
@@ -27,6 +27,12 @@ class ElementSyncer {
                 break;
             }
             case "button": {
+                if (cElementId === -1) {
+                    let parent = ElementTransformer.GetElementByServerId(eD.parent);
+                    element = new DxWindow(eD.title, eD.x, eD.y, eD.width, eD.height, eD.relative, new Color(eD.color.a,  eD.color.r, eD.color.g, eD.color.b), parent);
+                }
+                else element = ElementTransformer.GetElementByClientId(cElementId);
+                
                 
                 break;
             }

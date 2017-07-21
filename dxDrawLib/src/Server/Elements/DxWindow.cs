@@ -14,10 +14,7 @@ namespace dxDrawLib.Server.Elements
         public bool closeButton;
         public bool debug;
         
-        public DxWindow(string title, float x, float y, float width, float height, bool relative=true) 
-            : this(title, x, y, width, height, relative, new Color(200,0,0,0)) {}
-
-        public DxWindow(string title, float x, float y, float width, float height, bool relative, Color color, DxElement parent=null) 
+        public DxWindow(string title, float x, float y, float width, float height, bool relative = false, Color color = null, DxElement parent=null) 
             : base(x, y, width, height, relative, color, parent)
         {
             this.title         = title;
