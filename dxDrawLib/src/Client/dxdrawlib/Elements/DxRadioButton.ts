@@ -48,6 +48,7 @@ class DxRadioButton extends DxElement {
 			if (!this.enabled) {
 				API.drawRectangle(this.X, this.Y, this.height, this.height, 0, 0, 0, 75);
 			}
+			this.drawChildren();
 		}
 	}
 

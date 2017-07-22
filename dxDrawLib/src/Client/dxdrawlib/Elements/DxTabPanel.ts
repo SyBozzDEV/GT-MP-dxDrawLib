@@ -21,8 +21,9 @@ class DxTabPanel extends DxElement {
 			API.drawRectangle(this.X, this.Y + this._offsetHeaderHeight, this.width, this.height - this._offsetHeaderHeight, this.color.r, this.color.g, this.color.b, this.color.a);
 			if (this._haveTab) {
 				for (var i = 0; i < this._tabnames.length; i++) {
-					API.drawRectangle(this.X, this.Y, 35, this._offsetHeaderHeight, this.color.r, this.color.g, this.color.b, this.color.a);
-					API.drawText(this._tabnames[i], this.X, this.Y, this._textSize, 255, 255, 255, 255, 0, justify.left, false, false, 0);
+					let textSize = this._tabnames[i].length * (this._textSize * 40);
+					API.drawRectangle(this.X, this.Y, textSize, this._offsetHeaderHeight, this.color.r, this.color.g, this.color.b, this.color.a);
+					API.drawText(this._tabnames[i], this.X + (textSize / 2), this.Y, this._textSize, 255, 255, 255, 255, 0, justify.center, false, false, 0);
 				}
 			}
 			this.drawChildren();
