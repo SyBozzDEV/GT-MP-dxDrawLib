@@ -19,12 +19,12 @@ class DxRadioButton extends DxElement {
 	public textColor: Color = new Color(255, 255, 255, 255);
 
 	//set setParent(value: DxElement) { this.changeParent(value); } // Not Supported at the moment
-	set selected(value: boolean) { this._selected = value; if (value) this._radioButtonGroup.changeSelected(this); }
-	get selected(): boolean { return this._selected }
-	set group(value: string) { this._radioButtonGroup.deleteElementFromGroup(this); this._group = value; this._radioButtonGroup.add(this); this.selected = false; }
-	get group(): string { return this._group; }
-	set pointOffset(value: number) { this._pointOffset = Math.round((clamp((1 - value), 0, 0.9) / 2) * 100) / 100; }
-	get pointOffset(): number { return this._offsetHeaderHeight; }
+	public set selected(value: boolean) { this._selected = value; if (value) this._radioButtonGroup.changeSelected(this); }
+	public get selected(): boolean { return this._selected }
+	public set group(value: string) { this._radioButtonGroup.deleteElementFromGroup(this); this._group = value; this._radioButtonGroup.add(this); this.selected = false; }
+	public get group(): string { return this._group; }
+	public set pointOffset(value: number) { this._pointOffset = Math.round((clamp((1 - value), 0, 0.9) / 2) * 100) / 100; }
+	public get pointOffset(): number { return 1 - this._pointOffset; }
 
 	constructor(public text: string, group: string, X: number, Y: number, width: number, height: number, selected: boolean = false, relative?: boolean, color?: Color, parent?: DxElement) {
 		super(X, Y, width, height, relative, color, parent);

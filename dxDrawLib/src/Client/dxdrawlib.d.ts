@@ -20,5 +20,7 @@
 /// <reference path="dxdrawlib/Elements/DxCheckbox.ts" />
 /// <reference path="dxdrawlib/Elements/DxTabPanel.ts" />
 /// <reference path="dxdrawlib/Elements/DxProgressBar.ts" />
+/// <reference path="dxdrawlib/Elements/DxEditBox.ts" />
+/// <reference path="dxdrawlib/Elements/DxScrollbar.ts" />
 
 /// <reference path="dxdrawlib/GtmpApi.ts" />

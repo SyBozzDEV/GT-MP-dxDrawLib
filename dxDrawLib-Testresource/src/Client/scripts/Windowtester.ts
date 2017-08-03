@@ -31,7 +31,7 @@ API.onResourceStart.connect(function() {
 
 	testProgressBar = new DxProgressBar(0.1, 0.8, 0.2, 0.1, true, null, testWindow);
 
-	testProgressBar.progress = 100;
+	//testProgressBar.progress = 50;
 	API.sendChatMessage(" > " + testProgressBar.progress);
 
     testRadioButton2.group = "key_1";
