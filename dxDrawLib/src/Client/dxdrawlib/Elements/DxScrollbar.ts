@@ -3,6 +3,7 @@
 class DxScrollbar extends DxElement {
 
 	public enabled: boolean = true;
+	public backColor: Color = new Color(255, 0, 0, 0);
 
 	constructor(X: number, Y: number, width: number, height: number, relative?: boolean, color?: Color, parent?: DxElement) {
 		super(X, Y, width, height, relative, color, parent);
@@ -11,7 +12,7 @@ class DxScrollbar extends DxElement {
 	public draw(): void {
 		if (this.visible) {
 			this.calculate();
-
+			API.drawRectangle(this.X, this.Y, this.width, this.height, this.backColor.r, this.backColor.g, this.backColor.b, this.backColor.a);
 			this.drawChildren();
 		}
 	}
