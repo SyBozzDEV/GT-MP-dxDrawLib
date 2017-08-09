@@ -18,7 +18,7 @@ class DxWindow extends DxElement {
 
 	constructor(public title: string, X: number, Y: number, width: number, height: number, relative?: boolean, color?: Color, parent?: DxElement) {
 		super(X, Y, width, height, relative, color, parent);
-		this.colorHeader = new Color((this.color.a * 1.1), this.color.r, this.color.g, this.color.b);
+		this.colorHeader = color.Clone().Darken(1.0);
 		this.colorTitle = new Color(255, 255, 255, 255);
 		this.headerHeight = 25;
 	}
