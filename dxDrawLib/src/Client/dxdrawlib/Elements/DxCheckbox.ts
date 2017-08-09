@@ -27,6 +27,7 @@ class DxCheckbox extends DxElement {
 			if (!this.enabled) {
 				API.drawRectangle(this.X, this.Y, this._getRoundHeight, this._getRoundHeight, 0, 0, 0, 75);
 			}
+			this.drawChildren();
 		}
 	}
 
